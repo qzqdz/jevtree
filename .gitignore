@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# 虚拟环境
+venv/
+.venv/
+env/
+
+# 模型权重（不推到 GitHub，太大）
+llm_model/
+*.safetensors
+*.bin
+*.gguf
+
+# 环境变量
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 数据和日志
+data/
+logs/
+*.log
+*.jsonl
+
+# 临时文件
+_test_*.py
+_tmp_*
+.cache/
