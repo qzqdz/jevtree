@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Generic classmate path: point at a CSV → grow tree → SOP → trace one row.
+"""Bring any feature CSV → grow tree → SOP → trace one row.
 
-Product spine demo (not Acc@budget). Default sample: loan approve.
+Universal product spine demo (not Acc@budget / not a production classifier).
+Default: loan_approve teaching sample. Also try play_tennis.csv / iris_banded.csv.
 """
 
 from __future__ import annotations

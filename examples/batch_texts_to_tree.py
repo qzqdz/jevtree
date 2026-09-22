@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Batch labeled texts OR scored homework answers → keyword cues → tree.
+"""Batch labeled texts OR scored homework/exam answers → keyword cues → tree.
 
-Supports classification and grading on the same spine. Offline (no LLM).
-Not a SOTA text classifier / auto-grader claim.
+Same universal spine for classification and ordinal scoring. Offline (no LLM).
+Interpretable cues — not a SOTA text classifier or black-box auto-grader.
+Try support_emails.csv, sms_spam_excerpt.csv, or homework_scoring/short_answers.csv.
 """
 
 from __future__ import annotations

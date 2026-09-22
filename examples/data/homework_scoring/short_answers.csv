@@ -1,21 +1,53 @@
-id,text,score
-h1,"Photosynthesis converts light energy into chemical energy in chloroplasts using chlorophyll.",5
-h2,"Plants make food from sun light in leaves.",4
-h3,"Photosynthesis is when plants eat sunlight.",3
-h4,"I think plants breathe air and grow.",2
-h5,"Don't know.",1
-h6,"Chlorophyll absorbs photons; CO2 and water become glucose and oxygen.",5
-h7,"Light reaction and Calvin cycle produce sugar from carbon dioxide.",5
-h8,"Sun helps plants make sugar somehow.",3
-h9,"Leaves are green so photosynthesis happens.",2
-h10,"Water plus carbon dioxide plus light yields glucose plus oxygen via chlorophyll.",5
-h11,"Plants do photosynthesis in the mitochondria.",2
-h12,"The process stores energy in ATP and NADPH then fixes carbon.",4
-h13,"Photosynthesis equals respiration but reverse.",3
-h14,"Green pigment catches light; stomata take CO2; roots take water.",4
-h15,"Because the teacher said plants need sun.",1
-h16,"Detailed: light-dependent reactions split water; dark reactions fix CO2 into G3P.",5
-h17,"Sunlight is important for plants.",2
-h18,"Chloroplasts contain thylakoids where light reactions occur.",4
-h19,"Maybe they use soil nutrients instead of light.",1
-h20,"Correct equation: 6CO2 + 6H2O + light → C6H12O6 + 6O2.",5
+id,text,score,prompt_id
+h1,Photosynthesis converts light energy into chemical energy in chloroplasts using chlorophyll.,5,photosynthesis
+h2,Plants make food from sun light in leaves.,4,photosynthesis
+h3,Photosynthesis is when plants eat sunlight.,3,photosynthesis
+h4,I think plants breathe air and grow.,2,photosynthesis
+h5,Don't know.,1,photosynthesis
+h6,Chlorophyll absorbs photons; CO2 and water become glucose and oxygen.,5,photosynthesis
+h7,Light reaction and Calvin cycle produce sugar from carbon dioxide.,5,photosynthesis
+h8,Sun helps plants make sugar somehow.,3,photosynthesis
+h9,Leaves are green so photosynthesis happens.,2,photosynthesis
+h10,Water plus carbon dioxide plus light yields glucose plus oxygen via chlorophyll.,5,photosynthesis
+h11,Plants do photosynthesis in the mitochondria.,2,photosynthesis
+h12,The process stores energy in ATP and NADPH then fixes carbon.,4,photosynthesis
+h13,Photosynthesis equals respiration but reverse.,3,photosynthesis
+h14,Green pigment catches light; stomata take CO2; roots take water.,4,photosynthesis
+h15,Because the teacher said plants need sun.,1,photosynthesis
+h16,Detailed: light-dependent reactions split water; dark reactions fix CO2 into G3P.,5,photosynthesis
+h17,Sunlight is important for plants.,2,photosynthesis
+h18,Chloroplasts contain thylakoids where light reactions occur.,4,photosynthesis
+h19,Maybe they use soil nutrients instead of light.,1,photosynthesis
+h20,Correct equation: 6CO2 + 6H2O + light → C6H12O6 + 6O2.,5,photosynthesis
+h21,The cell membrane is a phospholipid bilayer with proteins that control what enters and exits.,5,cell_membrane
+h22,It is a thin skin around the cell that lets some things through.,4,cell_membrane
+h23,Membrane keeps stuff in the cell.,3,cell_membrane
+h24,Cells have walls made of plastic.,1,cell_membrane
+h25,"Selective permeability via diffusion, osmosis, and active transport using ATP.",5,cell_membrane
+h26,Cholesterol and embedded proteins help fluidity and transport.,4,cell_membrane
+h27,Only water can pass; nothing else.,2,cell_membrane
+h28,Fluid mosaic model describes lipids and proteins moving.,5,cell_membrane
+h29,It is the nucleus covering.,1,cell_membrane
+h30,Hydrophilic heads face water; hydrophobic tails face inward.,5,cell_membrane
+h31,Membrane is important for life.,2,cell_membrane
+h32,Pump proteins move ions against gradients using energy.,4,cell_membrane
+h33,"Evaporation, condensation, precipitation, and collection move water through Earth systems.",5,water_cycle
+h34,Water goes up as vapor then falls as rain.,4,water_cycle
+h35,Clouds make rain and rivers.,3,water_cycle
+h36,The sun heats oceans; vapor rises; cools into clouds; rain returns to land and sea.,5,water_cycle
+h37,Water disappears then comes back somehow.,2,water_cycle
+h38,Transpiration from plants also adds vapor to the air.,4,water_cycle
+h39,I forgot the steps.,1,water_cycle
+h40,Infiltration and runoff return water to groundwater and rivers after precipitation.,5,water_cycle
+h41,Rain comes from the moon.,1,water_cycle
+h42,Condensation forms clouds when moist air cools to dew point.,4,water_cycle
+h43,It is a cycle with heat and gravity.,3,water_cycle
+h44,Snow and hail are solid forms of precipitation in the same cycle.,4,water_cycle
+h45,A constitution limits government power and protects basic rights through written rules.,5,civics
+h46,It is the main law book of a country.,4,civics
+h47,People vote and there are rules.,3,civics
+h48,Kings decide everything without limits.,1,civics
+h49,Separation of powers and checks and balances reduce abuse of authority.,5,civics
+h50,Citizens have rights like speech and due process under constitutional law.,4,civics
+h51,Laws are important.,2,civics
+h52,Amendments allow the constitution to change with society while staying supreme law.,5,civics

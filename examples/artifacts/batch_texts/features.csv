@@ -1,21 +1,61 @@
-id,text,kw_billing,kw_code,kw_enterprise,kw_free,kw_invoice,kw_month,kw_need,kw_please,kw_refund,kw_shows,label
-e1,My invoice shows a wrong charge and I need a refund immediately,no,no,no,no,yes,no,yes,no,yes,yes,billing
-e2,API returns 500 Internal Server Error with code ERR_TIMEOUT,no,yes,no,no,no,no,no,no,no,no,engineering
-e3,Please remove this abusive comment from my profile ASAP,no,no,no,no,no,no,no,yes,no,no,trust_safety
-e4,How do I reset my password on the free plan?,no,no,no,yes,no,no,no,no,no,no,general
-e5,Charged twice for the same subscription this month,no,no,no,no,no,yes,no,no,no,no,billing
-e6,Webhook delivery failed with HTTP 502 from your gateway,no,no,no,no,no,no,no,no,no,no,engineering
-e7,User is posting hate speech in the community forum urgently,no,no,no,no,no,no,no,no,no,no,trust_safety
-e8,Where can I find documentation for the starter tier?,no,no,no,no,no,no,no,no,no,no,general
-e9,Requesting refund for unused seats on enterprise invoice,no,no,yes,no,yes,no,no,no,yes,no,billing
-e10,Stack trace shows NullPointerException in payment-service,no,no,no,no,no,no,no,no,no,yes,engineering
-e11,Report: NSFW image uploaded to public gallery,no,no,no,no,no,no,no,no,no,no,trust_safety
-e12,Can you explain the difference between pro and free?,no,no,no,yes,no,no,no,no,no,no,general
-e13,Billing portal will not let me download last month receipt,yes,no,no,no,no,yes,no,no,no,no,billing
-e14,Production deploy broke auth; urgent outage,no,no,no,no,no,no,no,no,no,no,engineering
-e15,Threatening messages in direct chat need moderation,no,no,no,no,no,no,yes,no,no,no,trust_safety
-e16,I forgot my username and cannot log in,no,no,no,no,no,no,no,no,no,no,general
-e17,Double billing after upgrading to enterprise,yes,no,yes,no,no,no,no,no,no,no,billing
-e18,SDK sample code throws TypeError on node 20,no,yes,no,no,no,no,no,no,no,no,engineering
-e19,Please ban the spam botnet accounts flooding us,no,no,no,no,no,no,no,yes,no,no,trust_safety
-e20,Thanks for the product; just exploring features,no,no,no,no,no,no,no,no,no,no,general
+id,text,kw_please,kw_invoice,kw_need,kw_report,kw_plan,kw_refund,kw_enterprise,kw_free,kw_last,kw_remove,kw_returns,kw_seats,label
+e1,My invoice shows a wrong charge and I need a refund immediately,no,yes,yes,no,no,yes,no,no,no,no,no,no,billing
+e2,API returns 500 Internal Server Error with code ERR_TIMEOUT,no,no,no,no,no,no,no,no,no,no,yes,no,engineering
+e3,Please remove this abusive comment from my profile ASAP,yes,no,no,no,no,no,no,no,no,yes,no,no,trust_safety
+e4,How do I reset my password on the free plan?,no,no,no,no,yes,no,no,yes,no,no,no,no,general
+e5,Charged twice for the same subscription this month,no,no,no,no,no,no,no,no,no,no,no,no,billing
+e6,Webhook delivery failed with HTTP 502 from your gateway,no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e7,User is posting hate speech in the community forum urgently,no,no,no,no,no,no,no,no,no,no,no,no,trust_safety
+e8,Where can I find documentation for the starter tier?,no,no,no,no,no,no,no,no,no,no,no,no,general
+e9,Requesting refund for unused seats on enterprise invoice,no,yes,no,no,no,yes,yes,no,no,no,no,yes,billing
+e10,Stack trace shows NullPointerException in payment-service,no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e11,Report: NSFW image uploaded to public gallery,no,no,no,yes,no,no,no,no,no,no,no,no,trust_safety
+e12,Can you explain the difference between pro and free?,no,no,no,no,no,no,no,yes,no,no,no,no,general
+e13,Billing portal will not let me download last month receipt,no,no,no,no,no,no,no,no,yes,no,no,no,billing
+e14,Production deploy broke auth; urgent outage,no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e15,Threatening messages in direct chat need moderation,no,no,yes,no,no,no,no,no,no,no,no,no,trust_safety
+e16,I forgot my username and cannot log in,no,no,no,no,no,no,no,no,no,no,no,no,general
+e17,Double billing after upgrading to enterprise,no,no,no,no,no,no,yes,no,no,no,no,no,billing
+e18,SDK sample code throws TypeError on node 20,no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e19,Please ban the spam botnet accounts flooding us,yes,no,no,no,no,no,no,no,no,no,no,no,trust_safety
+e20,Thanks for the product; just exploring features,no,no,no,no,no,no,no,no,no,no,no,no,general
+e21,Credit card was charged after I canceled last week — please reverse,yes,no,no,no,no,no,no,no,yes,no,no,no,billing
+e22,Prometheus metrics endpoint returns 404 after the last release,no,no,no,no,no,no,no,no,yes,no,yes,no,engineering
+e23,Someone is doxxing me in the comments; remove the post,no,no,no,no,no,no,no,no,no,yes,no,no,trust_safety
+e24,Is there a student discount for the annual plan?,no,no,no,no,yes,no,no,no,no,no,no,no,general
+e25,Need a VAT invoice reissued with our company address,no,yes,yes,no,no,no,no,no,no,no,no,no,billing
+e26,GraphQL mutation createOrder hangs for 30 seconds then times out,no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e27,Report phishing links being shared in public channels,no,no,no,yes,no,no,no,no,no,no,no,no,trust_safety
+e28,How do I invite a teammate to my workspace?,no,no,no,no,no,no,no,no,no,no,no,no,general
+e29,Prorated refund request after downgrading seats mid-cycle,no,no,no,no,no,yes,no,no,no,no,no,yes,billing
+e30,CI pipeline fails: OOMKilled in the worker container,no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e31,Please escalate: repeated harassment from the same user id,yes,no,no,no,no,no,no,no,no,no,no,no,trust_safety
+e32,Where is the changelog for the July release?,no,no,no,no,no,no,no,no,no,no,no,no,general
+e33,Payment failed but my bank shows the money left — reconcile,no,no,no,no,no,no,no,no,no,no,no,no,billing
+e34,Redis connection pool exhausted causing cascading 503s,no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e35,Child safety report: inappropriate DM to a minor account,no,no,no,yes,no,no,no,no,no,no,no,no,trust_safety
+e36,Can you walk me through enabling two-factor authentication?,no,no,no,no,no,no,no,no,no,no,no,no,general
+e37,Subscription auto-renewed without notice; cancel and refund,no,no,no,no,no,yes,no,no,no,no,no,no,billing
+e38,Mobile app crashes on launch after update 2.14.0 (iOS 17),no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e39,Scam accounts impersonating support are DMing customers,no,no,no,no,no,no,no,no,no,no,no,no,trust_safety
+e40,Looking for an onboarding checklist for new admins,no,no,no,no,no,no,no,no,no,no,no,no,general
+e41,Wire transfer invoice paid but seats not unlocked yet,no,yes,no,no,no,no,no,no,no,no,no,yes,billing
+e42,Latency spike on /v1/search — p99 over 2 seconds since noon,no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e43,Please take down copyright-infringing video uploaded today,yes,no,no,no,no,no,no,no,no,no,no,no,trust_safety
+e44,Does the free plan include API access or only the UI?,no,no,no,no,yes,no,no,yes,no,no,no,no,general
+e45,Incorrect tax applied on EU invoice; need corrected PDF,no,yes,yes,no,no,no,no,no,no,no,no,no,billing
+e46,Database migration left orphaned rows; service fails healthcheck,no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e47,Urgent: account takeover attempt emails flooding users,no,no,no,no,no,no,no,no,no,no,no,no,trust_safety
+e48,How long does SSO setup usually take for Okta?,no,no,no,no,no,no,no,no,no,no,no,no,general
+e49,Chargeback notice from Visa for order #48291 — please advise,yes,no,no,no,no,no,no,no,no,no,no,no,billing
+e50,OpenAPI schema mismatch: field created_at missing in response,no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e51,Report coordinated brigading against a creator profile,no,no,no,yes,no,no,no,no,no,no,no,no,trust_safety
+e52,Is weekend support available on the business plan?,no,no,no,no,yes,no,no,no,no,no,no,no,general
+e53,Need itemized receipt for accounting for Q3 charges,no,no,yes,no,no,no,no,no,no,no,no,no,billing
+e54,Websocket reconnect loop after idle timeout in chrome,no,no,no,no,no,no,no,no,no,no,no,no,engineering
+e55,Remove deepfake image of a private person from trending,no,no,no,no,no,no,no,no,no,yes,no,no,trust_safety
+e56,Could you point me to the status page and incident history?,no,no,no,no,no,no,no,no,no,no,no,no,general
+e57,Enterprise quote has wrong seat count; revise before PO,no,no,no,no,no,no,yes,no,no,no,no,no,billing
+e58,Feature flag service returns stale config after deploy,no,no,no,no,no,no,no,no,no,no,yes,no,engineering
+e59,Please investigate mass report abuse targeting one community,yes,no,no,yes,no,no,no,no,no,no,no,no,trust_safety
+e60,I am evaluating the product for a university lab — any tips?,no,no,no,no,no,no,no,no,no,no,no,no,general

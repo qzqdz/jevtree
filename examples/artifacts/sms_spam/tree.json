@@ -1,0 +1,144 @@
+{
+  "type": "IGDecisionTree",
+  "label_key": "label",
+  "feature_keys": [
+    "kw_call",
+    "kw_now",
+    "kw_free",
+    "kw_text",
+    "kw_txt",
+    "kw_mobile",
+    "kw_new",
+    "kw_min",
+    "kw_reply",
+    "kw_send",
+    "kw_stop",
+    "kw_www"
+  ],
+  "min_samples": 2,
+  "continuous_keys": [],
+  "n_bins": 4,
+  "bin_seed": 42,
+  "tree": {
+    "kind": "node",
+    "feature": "kw_call",
+    "default": "ham",
+    "n_samples": 80,
+    "children": {
+      "\"no\"": {
+        "kind": "node",
+        "feature": "kw_txt",
+        "default": "ham",
+        "n_samples": 59,
+        "children": {
+          "\"no\"": {
+            "kind": "node",
+            "feature": "kw_send",
+            "default": "ham",
+            "n_samples": 50,
+            "children": {
+              "\"no\"": {
+                "kind": "node",
+                "feature": "kw_text",
+                "default": "ham",
+                "n_samples": 45,
+                "children": {
+                  "\"no\"": {
+                    "kind": "leaf",
+                    "prediction": "ham",
+                    "counts": {
+                      "ham": 38,
+                      "spam": 3
+                    },
+                    "n_samples": 41
+                  },
+                  "\"yes\"": {
+                    "kind": "leaf",
+                    "prediction": "spam",
+                    "counts": {
+                      "spam": 4
+                    },
+                    "n_samples": 4
+                  }
+                }
+              },
+              "\"yes\"": {
+                "kind": "leaf",
+                "prediction": "spam",
+                "counts": {
+                  "spam": 5
+                },
+                "n_samples": 5
+              }
+            }
+          },
+          "\"yes\"": {
+            "kind": "leaf",
+            "prediction": "spam",
+            "counts": {
+              "spam": 9
+            },
+            "n_samples": 9
+          }
+        }
+      },
+      "\"yes\"": {
+        "kind": "node",
+        "feature": "kw_min",
+        "default": "spam",
+        "n_samples": 21,
+        "children": {
+          "\"no\"": {
+            "kind": "node",
+            "feature": "kw_mobile",
+            "default": "spam",
+            "n_samples": 16,
+            "children": {
+              "\"yes\"": {
+                "kind": "leaf",
+                "prediction": "spam",
+                "counts": {
+                  "spam": 4
+                },
+                "n_samples": 4
+              },
+              "\"no\"": {
+                "kind": "node",
+                "feature": "kw_new",
+                "default": "spam",
+                "n_samples": 12,
+                "children": {
+                  "\"no\"": {
+                    "kind": "leaf",
+                    "prediction": "spam",
+                    "counts": {
+                      "spam": 6,
+                      "ham": 2
+                    },
+                    "n_samples": 8
+                  },
+                  "\"yes\"": {
+                    "kind": "leaf",
+                    "prediction": "spam",
+                    "counts": {
+                      "spam": 4
+                    },
+                    "n_samples": 4
+                  }
+                }
+              }
+            }
+          },
+          "\"yes\"": {
+            "kind": "leaf",
+            "prediction": "spam",
+            "counts": {
+              "spam": 5
+            },
+            "n_samples": 5
+          }
+        }
+      }
+    }
+  }
+}

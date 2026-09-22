@@ -16,69 +16,29 @@
     "kind": "node",
     "feature": "credit_history",
     "default": "yes",
-    "n_samples": 25,
+    "n_samples": 88,
     "children": {
       "\"good\"": {
         "kind": "node",
-        "feature": "collateral",
+        "feature": "debt_ratio",
         "default": "yes",
-        "n_samples": 12,
+        "n_samples": 33,
         "children": {
-          "\"yes\"": {
+          "\"low\"": {
             "kind": "leaf",
             "prediction": "yes",
             "counts": {
-              "yes": 8
+              "yes": 13
             },
-            "n_samples": 8
+            "n_samples": 13
           },
-          "\"no\"": {
-            "kind": "node",
-            "feature": "income_band",
-            "default": "no",
-            "n_samples": 4,
-            "children": {
-              "\"high\"": {
-                "kind": "leaf",
-                "prediction": "yes",
-                "counts": {
-                  "yes": 1
-                },
-                "n_samples": 1
-              },
-              "\"mid\"": {
-                "kind": "leaf",
-                "prediction": "yes",
-                "counts": {
-                  "yes": 1
-                },
-                "n_samples": 1
-              },
-              "\"low\"": {
-                "kind": "leaf",
-                "prediction": "no",
-                "counts": {
-                  "no": 2
-                },
-                "n_samples": 2
-              }
-            }
-          }
-        }
-      },
-      "\"fair\"": {
-        "kind": "node",
-        "feature": "debt_ratio",
-        "default": "yes",
-        "n_samples": 7,
-        "children": {
           "\"mid\"": {
             "kind": "node",
-            "feature": "collateral",
+            "feature": "employment_years",
             "default": "yes",
-            "n_samples": 3,
+            "n_samples": 7,
             "children": {
-              "\"yes\"": {
+              "\"5plus\"": {
                 "kind": "leaf",
                 "prediction": "yes",
                 "counts": {
@@ -86,7 +46,39 @@
                 },
                 "n_samples": 2
               },
-              "\"no\"": {
+              "\"3to5\"": {
+                "kind": "leaf",
+                "prediction": "yes",
+                "counts": {
+                  "yes": 2
+                },
+                "n_samples": 2
+              },
+              "\"1to3\"": {
+                "kind": "node",
+                "feature": "collateral",
+                "default": "no",
+                "n_samples": 2,
+                "children": {
+                  "\"yes\"": {
+                    "kind": "leaf",
+                    "prediction": "yes",
+                    "counts": {
+                      "yes": 1
+                    },
+                    "n_samples": 1
+                  },
+                  "\"no\"": {
+                    "kind": "leaf",
+                    "prediction": "no",
+                    "counts": {
+                      "no": 1
+                    },
+                    "n_samples": 1
+                  }
+                }
+              },
+              "\"lt1\"": {
                 "kind": "leaf",
                 "prediction": "no",
                 "counts": {
@@ -97,30 +89,337 @@
             }
           },
           "\"high\"": {
-            "kind": "leaf",
-            "prediction": "no",
-            "counts": {
-              "no": 2
-            },
-            "n_samples": 2
-          },
-          "\"low\"": {
+            "kind": "node",
+            "feature": "collateral",
+            "default": "yes",
+            "n_samples": 13,
+            "children": {
+              "\"yes\"": {
+                "kind": "node",
+                "feature": "employment_years",
+                "default": "yes",
+                "n_samples": 9,
+                "children": {
+                  "\"3to5\"": {
+                    "kind": "leaf",
+                    "prediction": "yes",
+                    "counts": {
+                      "yes": 2
+                    },
+                    "n_samples": 2
+                  },
+                  "\"1to3\"": {
+                    "kind": "leaf",
+                    "prediction": "yes",
+                    "counts": {
+                      "yes": 3
+                    },
+                    "n_samples": 3
+                  },
+                  "\"lt1\"": {
+                    "kind": "leaf",
+                    "prediction": "yes",
+                    "counts": {
+                      "yes": 2,
+                      "no": 1
+                    },
+                    "n_samples": 3
+                  },
+                  "\"5plus\"": {
+                    "kind": "leaf",
+                    "prediction": "yes",
+                    "counts": {
+                      "yes": 1
+                    },
+                    "n_samples": 1
+                  }
+                }
+              },
+              "\"no\"": {
+                "kind": "leaf",
+                "prediction": "no",
+                "counts": {
+                  "no": 4
+                },
+                "n_samples": 4
+              }
+            }
+          }
+        }
+      },
+      "\"fair\"": {
+        "kind": "node",
+        "feature": "employment_years",
+        "default": "yes",
+        "n_samples": 27,
+        "children": {
+          "\"5plus\"": {
             "kind": "leaf",
             "prediction": "yes",
             "counts": {
-              "yes": 2
+              "yes": 6
             },
-            "n_samples": 2
+            "n_samples": 6
+          },
+          "\"3to5\"": {
+            "kind": "leaf",
+            "prediction": "yes",
+            "counts": {
+              "yes": 5
+            },
+            "n_samples": 5
+          },
+          "\"1to3\"": {
+            "kind": "leaf",
+            "prediction": "no",
+            "counts": {
+              "no": 5
+            },
+            "n_samples": 5
+          },
+          "\"lt1\"": {
+            "kind": "node",
+            "feature": "debt_ratio",
+            "default": "no",
+            "n_samples": 11,
+            "children": {
+              "\"low\"": {
+                "kind": "node",
+                "feature": "income_band",
+                "default": "yes",
+                "n_samples": 3,
+                "children": {
+                  "\"high\"": {
+                    "kind": "leaf",
+                    "prediction": "yes",
+                    "counts": {
+                      "yes": 2
+                    },
+                    "n_samples": 2
+                  },
+                  "\"low\"": {
+                    "kind": "leaf",
+                    "prediction": "no",
+                    "counts": {
+                      "no": 1
+                    },
+                    "n_samples": 1
+                  }
+                }
+              },
+              "\"mid\"": {
+                "kind": "node",
+                "feature": "income_band",
+                "default": "no",
+                "n_samples": 4,
+                "children": {
+                  "\"high\"": {
+                    "kind": "leaf",
+                    "prediction": "no",
+                    "counts": {
+                      "yes": 1,
+                      "no": 1
+                    },
+                    "n_samples": 2
+                  },
+                  "\"mid\"": {
+                    "kind": "leaf",
+                    "prediction": "yes",
+                    "counts": {
+                      "yes": 1
+                    },
+                    "n_samples": 1
+                  },
+                  "\"low\"": {
+                    "kind": "leaf",
+                    "prediction": "no",
+                    "counts": {
+                      "no": 1
+                    },
+                    "n_samples": 1
+                  }
+                }
+              },
+              "\"high\"": {
+                "kind": "leaf",
+                "prediction": "no",
+                "counts": {
+                  "no": 4
+                },
+                "n_samples": 4
+              }
+            }
           }
         }
       },
       "\"poor\"": {
-        "kind": "leaf",
-        "prediction": "no",
-        "counts": {
-          "no": 6
-        },
-        "n_samples": 6
+        "kind": "node",
+        "feature": "employment_years",
+        "default": "no",
+        "n_samples": 28,
+        "children": {
+          "\"5plus\"": {
+            "kind": "node",
+            "feature": "debt_ratio",
+            "default": "no",
+            "n_samples": 8,
+            "children": {
+              "\"low\"": {
+                "kind": "leaf",
+                "prediction": "yes",
+                "counts": {
+                  "yes": 2
+                },
+                "n_samples": 2
+              },
+              "\"mid\"": {
+                "kind": "node",
+                "feature": "collateral",
+                "default": "no",
+                "n_samples": 2,
+                "children": {
+                  "\"yes\"": {
+                    "kind": "leaf",
+                    "prediction": "yes",
+                    "counts": {
+                      "yes": 1
+                    },
+                    "n_samples": 1
+                  },
+                  "\"no\"": {
+                    "kind": "leaf",
+                    "prediction": "no",
+                    "counts": {
+                      "no": 1
+                    },
+                    "n_samples": 1
+                  }
+                }
+              },
+              "\"high\"": {
+                "kind": "node",
+                "feature": "income_band",
+                "default": "no",
+                "n_samples": 4,
+                "children": {
+                  "\"high\"": {
+                    "kind": "leaf",
+                    "prediction": "yes",
+                    "counts": {
+                      "yes": 1
+                    },
+                    "n_samples": 1
+                  },
+                  "\"mid\"": {
+                    "kind": "leaf",
+                    "prediction": "no",
+                    "counts": {
+                      "no": 2
+                    },
+                    "n_samples": 2
+                  },
+                  "\"low\"": {
+                    "kind": "leaf",
+                    "prediction": "no",
+                    "counts": {
+                      "no": 1
+                    },
+                    "n_samples": 1
+                  }
+                }
+              }
+            }
+          },
+          "\"3to5\"": {
+            "kind": "node",
+            "feature": "debt_ratio",
+            "default": "no",
+            "n_samples": 7,
+            "children": {
+              "\"mid\"": {
+                "kind": "leaf",
+                "prediction": "yes",
+                "counts": {
+                  "yes": 1
+                },
+                "n_samples": 1
+              },
+              "\"high\"": {
+                "kind": "leaf",
+                "prediction": "no",
+                "counts": {
+                  "no": 5
+                },
+                "n_samples": 5
+              },
+              "\"low\"": {
+                "kind": "leaf",
+                "prediction": "yes",
+                "counts": {
+                  "yes": 1
+                },
+                "n_samples": 1
+              }
+            }
+          },
+          "\"lt1\"": {
+            "kind": "node",
+            "feature": "debt_ratio",
+            "default": "no",
+            "n_samples": 8,
+            "children": {
+              "\"low\"": {
+                "kind": "node",
+                "feature": "collateral",
+                "default": "no",
+                "n_samples": 4,
+                "children": {
+                  "\"yes\"": {
+                    "kind": "leaf",
+                    "prediction": "no",
+                    "counts": {
+                      "yes": 1,
+                      "no": 1
+                    },
+                    "n_samples": 2
+                  },
+                  "\"no\"": {
+                    "kind": "leaf",
+                    "prediction": "no",
+                    "counts": {
+                      "no": 2
+                    },
+                    "n_samples": 2
+                  }
+                }
+              },
+              "\"mid\"": {
+                "kind": "leaf",
+                "prediction": "no",
+                "counts": {
+                  "no": 2
+                },
+                "n_samples": 2
+              },
+              "\"high\"": {
+                "kind": "leaf",
+                "prediction": "no",
+                "counts": {
+                  "no": 2
+                },
+                "n_samples": 2
+              }
+            }
+          },
+          "\"1to3\"": {
+            "kind": "leaf",
+            "prediction": "no",
+            "counts": {
+              "no": 5
+            },
+            "n_samples": 5
+          }
+        }
       }
     }
   }

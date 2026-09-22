@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Messy notes + goal → LLM FeatureTable → same grow path.
+"""Messy notes + one-line goal → LLM FeatureTable → same grow path.
 
-Requires META_JEV_LLM_* in gitignored .env. On failure: clear error, no fake rows.
+Universal product door for unstructured materials. Requires META_JEV_LLM_* in
+gitignored .env. On failure: clear error and fall back to CSV / text-batch — never fake rows.
 """
 
 from __future__ import annotations

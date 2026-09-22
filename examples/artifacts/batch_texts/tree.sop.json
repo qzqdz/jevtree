@@ -9,16 +9,18 @@
     "kind": "IGDecisionTree",
     "label_key": "label",
     "feature_keys": [
-      "kw_billing",
-      "kw_code",
+      "kw_please",
+      "kw_invoice",
+      "kw_need",
+      "kw_report",
+      "kw_plan",
+      "kw_refund",
       "kw_enterprise",
       "kw_free",
-      "kw_invoice",
-      "kw_month",
-      "kw_need",
-      "kw_please",
-      "kw_refund",
-      "kw_shows"
+      "kw_last",
+      "kw_remove",
+      "kw_returns",
+      "kw_seats"
     ],
     "min_samples": 2,
     "continuous_keys": [],
@@ -26,45 +28,71 @@
     "bin_seed": 42,
     "tree": {
       "kind": "node",
-      "feature": "kw_code",
+      "feature": "kw_invoice",
       "default": "billing",
-      "n_samples": 20,
+      "n_samples": 60,
       "children": {
+        "\"yes\"": {
+          "kind": "leaf",
+          "prediction": "billing",
+          "counts": {
+            "billing": 5
+          },
+          "n_samples": 5
+        },
         "\"no\"": {
           "kind": "node",
-          "feature": "kw_billing",
-          "default": "billing",
-          "n_samples": 18,
+          "feature": "kw_report",
+          "default": "engineering",
+          "n_samples": 55,
           "children": {
             "\"no\"": {
               "kind": "node",
-              "feature": "kw_invoice",
-              "default": "general",
-              "n_samples": 16,
+              "feature": "kw_please",
+              "default": "engineering",
+              "n_samples": 50,
               "children": {
-                "\"yes\"": {
-                  "kind": "leaf",
-                  "prediction": "billing",
-                  "counts": {
-                    "billing": 2
-                  },
-                  "n_samples": 2
-                },
                 "\"no\"": {
                   "kind": "node",
-                  "feature": "kw_month",
-                  "default": "general",
-                  "n_samples": 14,
+                  "feature": "kw_plan",
+                  "default": "engineering",
+                  "n_samples": 44,
                   "children": {
                     "\"no\"": {
                       "kind": "leaf",
+                      "prediction": "engineering",
+                      "counts": {
+                        "engineering": 15,
+                        "billing": 8,
+                        "trust_safety": 6,
+                        "general": 11
+                      },
+                      "n_samples": 40
+                    },
+                    "\"yes\"": {
+                      "kind": "leaf",
                       "prediction": "general",
                       "counts": {
-                        "trust_safety": 5,
-                        "general": 5,
-                        "engineering": 3
+                        "general": 4
                       },
-                      "n_samples": 13
+                      "n_samples": 4
+                    }
+                  }
+                },
+                "\"yes\"": {
+                  "kind": "node",
+                  "feature": "kw_last",
+                  "default": "trust_safety",
+                  "n_samples": 6,
+                  "children": {
+                    "\"no\"": {
+                      "kind": "leaf",
+                      "prediction": "trust_safety",
+                      "counts": {
+                        "trust_safety": 4,
+                        "billing": 1
+                      },
+                      "n_samples": 5
                     },
                     "\"yes\"": {
                       "kind": "leaf",
@@ -80,21 +108,13 @@
             },
             "\"yes\"": {
               "kind": "leaf",
-              "prediction": "billing",
+              "prediction": "trust_safety",
               "counts": {
-                "billing": 2
+                "trust_safety": 5
               },
-              "n_samples": 2
+              "n_samples": 5
             }
           }
-        },
-        "\"yes\"": {
-          "kind": "leaf",
-          "prediction": "engineering",
-          "counts": {
-            "engineering": 2
-          },
-          "n_samples": 2
         }
       }
     }

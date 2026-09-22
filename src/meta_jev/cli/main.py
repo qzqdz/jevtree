@@ -697,6 +697,12 @@ def build_parser() -> argparse.ArgumentParser:
             "Meta-Jev — bring data/materials + goal → auditable decision tree SOP. "
             "Also: AFABench hard-budget eval via eval-afa."
         ),
+        epilog=(
+            "Story: CSV / text batch / scoring batch / messy+goal → FeatureTable → "
+            "IG tree/SOP → run --trace. Product spine demos are not Acc@budget. "
+            "See README.md and examples/data/SOURCES.md."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     sub = p.add_subparsers(dest="command", required=True)
 
