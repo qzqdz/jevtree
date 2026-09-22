@@ -1,0 +1,21 @@
+id,text,label
+e1,"My invoice shows a wrong charge and I need a refund immediately",billing
+e2,"API returns 500 Internal Server Error with code ERR_TIMEOUT",engineering
+e3,"Please remove this abusive comment from my profile ASAP",trust_safety
+e4,"How do I reset my password on the free plan?",general
+e5,"Charged twice for the same subscription this month",billing
+e6,"Webhook delivery failed with HTTP 502 from your gateway",engineering
+e7,"User is posting hate speech in the community forum urgently",trust_safety
+e8,"Where can I find documentation for the starter tier?",general
+e9,"Requesting refund for unused seats on enterprise invoice",billing
+e10,"Stack trace shows NullPointerException in payment-service",engineering
+e11,"Report: NSFW image uploaded to public gallery",trust_safety
+e12,"Can you explain the difference between pro and free?",general
+e13,"Billing portal will not let me download last month receipt",billing
+e14,"Production deploy broke auth; urgent outage",engineering
+e15,"Threatening messages in direct chat need moderation",trust_safety
+e16,"I forgot my username and cannot log in",general
+e17,"Double billing after upgrading to enterprise",billing
+e18,"SDK sample code throws TypeError on node 20",engineering
+e19,"Please ban the spam botnet accounts flooding us",trust_safety
+e20,"Thanks for the product; just exploring features",general

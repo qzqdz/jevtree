@@ -1,0 +1,11 @@
+Thread dump from ops chat:
+- Alice: enterprise customer angry about double charge on invoice #4421, wants refund
+- Bob: another ticket — API 500s with ERR_TIMEOUT after deploy, logs show gateway 502
+- Carol: UGC report NSFW image in gallery, urgent moderation
+- Dan: free user forgot password / username, asking how to reset
+- Eve: charged twice after upgrading to enterprise seats
+- Frank: NullPointerException in payment-service stack trace
+- Grace: hate speech in community forum, please remove ASAP
+- Hank: where is starter-tier docs?
+Also scattered notes: "billing portal receipt download broken", "spam botnet ban request",
+"SDK TypeError on node 20", "just exploring features thanks".

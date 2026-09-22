@@ -1,0 +1,102 @@
+{
+  "version": 2,
+  "name": "meta-jev-tree",
+  "jev_model": "typesafe-ai/jev",
+  "nodes": [],
+  "output": "tree",
+  "kind": "tree",
+  "tree": {
+    "kind": "IGDecisionTree",
+    "label_key": "label",
+    "feature_keys": [
+      "kw_billing",
+      "kw_code",
+      "kw_enterprise",
+      "kw_free",
+      "kw_invoice",
+      "kw_month",
+      "kw_need",
+      "kw_please",
+      "kw_refund",
+      "kw_shows"
+    ],
+    "min_samples": 2,
+    "continuous_keys": [],
+    "n_bins": 4,
+    "bin_seed": 42,
+    "tree": {
+      "kind": "node",
+      "feature": "kw_code",
+      "default": "billing",
+      "n_samples": 20,
+      "children": {
+        "\"no\"": {
+          "kind": "node",
+          "feature": "kw_billing",
+          "default": "billing",
+          "n_samples": 18,
+          "children": {
+            "\"no\"": {
+              "kind": "node",
+              "feature": "kw_invoice",
+              "default": "general",
+              "n_samples": 16,
+              "children": {
+                "\"yes\"": {
+                  "kind": "leaf",
+                  "prediction": "billing",
+                  "counts": {
+                    "billing": 2
+                  },
+                  "n_samples": 2
+                },
+                "\"no\"": {
+                  "kind": "node",
+                  "feature": "kw_month",
+                  "default": "general",
+                  "n_samples": 14,
+                  "children": {
+                    "\"no\"": {
+                      "kind": "leaf",
+                      "prediction": "general",
+                      "counts": {
+                        "trust_safety": 5,
+                        "general": 5,
+                        "engineering": 3
+                      },
+                      "n_samples": 13
+                    },
+                    "\"yes\"": {
+                      "kind": "leaf",
+                      "prediction": "billing",
+                      "counts": {
+                        "billing": 1
+                      },
+                      "n_samples": 1
+                    }
+                  }
+                }
+              }
+            },
+            "\"yes\"": {
+              "kind": "leaf",
+              "prediction": "billing",
+              "counts": {
+                "billing": 2
+              },
+              "n_samples": 2
+            }
+          }
+        },
+        "\"yes\"": {
+          "kind": "leaf",
+          "prediction": "engineering",
+          "counts": {
+            "engineering": 2
+          },
+          "n_samples": 2
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "version": 2,
+  "name": "meta-jev-tree",
+  "jev_model": "typesafe-ai/jev",
+  "nodes": [],
+  "output": "tree",
+  "kind": "tree",
+  "tree": {
+    "kind": "IGDecisionTree",
+    "label_key": "label",
+    "feature_keys": [
+      "kw_light",
+      "kw_plants",
+      "kw_photosynthesis",
+      "kw_co",
+      "kw_in",
+      "kw_water",
+      "kw_carbon",
+      "kw_chlorophyll",
+      "kw_sun",
+      "kw_chloroplasts",
+      "kw_dioxide",
+      "kw_energy"
+    ],
+    "min_samples": 2,
+    "continuous_keys": [],
+    "n_bins": 4,
+    "bin_seed": 42,
+    "tree": {
+      "kind": "node",
+      "feature": "kw_light",
+      "default": "5",
+      "n_samples": 20,
+      "children": {
+        "\"yes\"": {
+          "kind": "node",
+          "feature": "kw_carbon",
+          "default": "5",
+          "n_samples": 9,
+          "children": {
+            "\"no\"": {
+              "kind": "node",
+              "feature": "kw_chlorophyll",
+              "default": "4",
+              "n_samples": 7,
+              "children": {
+                "\"yes\"": {
+                  "kind": "leaf",
+                  "prediction": "5",
+                  "counts": {
+                    "5": 1
+                  },
+                  "n_samples": 1
+                },
+                "\"no\"": {
+                  "kind": "node",
+                  "feature": "kw_co",
+                  "default": "4",
+                  "n_samples": 6,
+                  "children": {
+                    "\"no\"": {
+                      "kind": "leaf",
+                      "prediction": "4",
+                      "counts": {
+                        "4": 2,
+                        "1": 1
+                      },
+                      "n_samples": 3
+                    },
+                    "\"yes\"": {
+                      "kind": "leaf",
+                      "prediction": "5",
+                      "counts": {
+                        "4": 1,
+                        "5": 2
+                      },
+                      "n_samples": 3
+                    }
+                  }
+                }
+              }
+            },
+            "\"yes\"": {
+              "kind": "leaf",
+              "prediction": "5",
+              "counts": {
+                "5": 2
+              },
+              "n_samples": 2
+            }
+          }
+        },
+        "\"no\"": {
+          "kind": "node",
+          "feature": "kw_carbon",
+          "default": "2",
+          "n_samples": 11,
+          "children": {
+            "\"no\"": {
+              "kind": "node",
+              "feature": "kw_chlorophyll",
+              "default": "2",
+              "n_samples": 10,
+              "children": {
+                "\"no\"": {
+                  "kind": "node",
+                  "feature": "kw_photosynthesis",
+                  "default": "2",
+                  "n_samples": 9,
+                  "children": {
+                    "\"yes\"": {
+                      "kind": "leaf",
+                      "prediction": "2",
+                      "counts": {
+                        "3": 2,
+                        "2": 2
+                      },
+                      "n_samples": 4
+                    },
+                    "\"no\"": {
+                      "kind": "leaf",
+                      "prediction": "1",
+                      "counts": {
+                        "2": 2,
+                        "1": 2,
+                        "3": 1
+                      },
+                      "n_samples": 5
+                    }
+                  }
+                },
+                "\"yes\"": {
+                  "kind": "leaf",
+                  "prediction": "5",
+                  "counts": {
+                    "5": 1
+                  },
+                  "n_samples": 1
+                }
+              }
+            },
+            "\"yes\"": {
+              "kind": "leaf",
+              "prediction": "4",
+              "counts": {
+                "4": 1
+              },
+              "n_samples": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

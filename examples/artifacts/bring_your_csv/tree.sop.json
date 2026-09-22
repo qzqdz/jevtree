@@ -1,0 +1,135 @@
+{
+  "version": 2,
+  "name": "meta-jev-tree",
+  "jev_model": "typesafe-ai/jev",
+  "nodes": [],
+  "output": "tree",
+  "kind": "tree",
+  "tree": {
+    "kind": "IGDecisionTree",
+    "label_key": "approve",
+    "feature_keys": [
+      "income_band",
+      "credit_history",
+      "employment_years",
+      "debt_ratio",
+      "collateral"
+    ],
+    "min_samples": 2,
+    "continuous_keys": [],
+    "n_bins": 4,
+    "bin_seed": 42,
+    "tree": {
+      "kind": "node",
+      "feature": "credit_history",
+      "default": "yes",
+      "n_samples": 25,
+      "children": {
+        "\"good\"": {
+          "kind": "node",
+          "feature": "collateral",
+          "default": "yes",
+          "n_samples": 12,
+          "children": {
+            "\"yes\"": {
+              "kind": "leaf",
+              "prediction": "yes",
+              "counts": {
+                "yes": 8
+              },
+              "n_samples": 8
+            },
+            "\"no\"": {
+              "kind": "node",
+              "feature": "income_band",
+              "default": "no",
+              "n_samples": 4,
+              "children": {
+                "\"high\"": {
+                  "kind": "leaf",
+                  "prediction": "yes",
+                  "counts": {
+                    "yes": 1
+                  },
+                  "n_samples": 1
+                },
+                "\"mid\"": {
+                  "kind": "leaf",
+                  "prediction": "yes",
+                  "counts": {
+                    "yes": 1
+                  },
+                  "n_samples": 1
+                },
+                "\"low\"": {
+                  "kind": "leaf",
+                  "prediction": "no",
+                  "counts": {
+                    "no": 2
+                  },
+                  "n_samples": 2
+                }
+              }
+            }
+          }
+        },
+        "\"fair\"": {
+          "kind": "node",
+          "feature": "debt_ratio",
+          "default": "yes",
+          "n_samples": 7,
+          "children": {
+            "\"mid\"": {
+              "kind": "node",
+              "feature": "collateral",
+              "default": "yes",
+              "n_samples": 3,
+              "children": {
+                "\"yes\"": {
+                  "kind": "leaf",
+                  "prediction": "yes",
+                  "counts": {
+                    "yes": 2
+                  },
+                  "n_samples": 2
+                },
+                "\"no\"": {
+                  "kind": "leaf",
+                  "prediction": "no",
+                  "counts": {
+                    "no": 1
+                  },
+                  "n_samples": 1
+                }
+              }
+            },
+            "\"high\"": {
+              "kind": "leaf",
+              "prediction": "no",
+              "counts": {
+                "no": 2
+              },
+              "n_samples": 2
+            },
+            "\"low\"": {
+              "kind": "leaf",
+              "prediction": "yes",
+              "counts": {
+                "yes": 2
+              },
+              "n_samples": 2
+            }
+          }
+        },
+        "\"poor\"": {
+          "kind": "leaf",
+          "prediction": "no",
+          "counts": {
+            "no": 6
+          },
+          "n_samples": 6
+        }
+      }
+    }
+  }
+}

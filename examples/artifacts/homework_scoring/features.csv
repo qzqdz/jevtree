@@ -1,0 +1,21 @@
+id,text,kw_light,kw_plants,kw_photosynthesis,kw_co,kw_in,kw_water,kw_carbon,kw_chlorophyll,kw_sun,kw_chloroplasts,kw_dioxide,kw_energy,label
+h1,Photosynthesis converts light energy into chemical energy in chloroplasts using chlorophyll.,yes,no,yes,no,yes,no,no,yes,no,yes,no,yes,5
+h2,Plants make food from sun light in leaves.,yes,yes,no,no,yes,no,no,no,yes,no,no,no,4
+h3,Photosynthesis is when plants eat sunlight.,no,yes,yes,no,no,no,no,no,no,no,no,no,3
+h4,I think plants breathe air and grow.,no,yes,no,no,no,no,no,no,no,no,no,no,2
+h5,Don't know.,no,no,no,no,no,no,no,no,no,no,no,no,1
+h6,Chlorophyll absorbs photons; CO2 and water become glucose and oxygen.,no,no,no,yes,no,yes,no,yes,no,no,no,no,5
+h7,Light reaction and Calvin cycle produce sugar from carbon dioxide.,yes,no,no,no,no,no,yes,no,no,no,yes,no,5
+h8,Sun helps plants make sugar somehow.,no,yes,no,no,no,no,no,no,yes,no,no,no,3
+h9,Leaves are green so photosynthesis happens.,no,no,yes,no,no,no,no,no,no,no,no,no,2
+h10,Water plus carbon dioxide plus light yields glucose plus oxygen via chlorophyll.,yes,no,no,no,no,yes,yes,yes,no,no,yes,no,5
+h11,Plants do photosynthesis in the mitochondria.,no,yes,yes,no,yes,no,no,no,no,no,no,no,2
+h12,The process stores energy in ATP and NADPH then fixes carbon.,no,no,no,no,yes,no,yes,no,no,no,no,yes,4
+h13,Photosynthesis equals respiration but reverse.,no,no,yes,no,no,no,no,no,no,no,no,no,3
+h14,Green pigment catches light; stomata take CO2; roots take water.,yes,no,no,yes,no,yes,no,no,no,no,no,no,4
+h15,Because the teacher said plants need sun.,no,yes,no,no,no,no,no,no,yes,no,no,no,1
+h16,Detailed: light-dependent reactions split water; dark reactions fix CO2 into G3P.,yes,no,no,yes,no,yes,no,no,no,no,no,no,5
+h17,Sunlight is important for plants.,no,yes,no,no,no,no,no,no,no,no,no,no,2
+h18,Chloroplasts contain thylakoids where light reactions occur.,yes,no,no,no,no,no,no,no,no,yes,no,no,4
+h19,Maybe they use soil nutrients instead of light.,yes,no,no,no,no,no,no,no,no,no,no,no,1
+h20,Correct equation: 6CO2 + 6H2O + light → C6H12O6 + 6O2.,yes,no,no,yes,no,no,no,no,no,no,no,no,5

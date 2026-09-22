@@ -1,0 +1,21 @@
+id,text,kw_billing,kw_code,kw_enterprise,kw_free,kw_invoice,kw_month,kw_need,kw_please,kw_refund,kw_shows,label
+e1,My invoice shows a wrong charge and I need a refund immediately,no,no,no,no,yes,no,yes,no,yes,yes,billing
+e2,API returns 500 Internal Server Error with code ERR_TIMEOUT,no,yes,no,no,no,no,no,no,no,no,engineering
+e3,Please remove this abusive comment from my profile ASAP,no,no,no,no,no,no,no,yes,no,no,trust_safety
+e4,How do I reset my password on the free plan?,no,no,no,yes,no,no,no,no,no,no,general
+e5,Charged twice for the same subscription this month,no,no,no,no,no,yes,no,no,no,no,billing
+e6,Webhook delivery failed with HTTP 502 from your gateway,no,no,no,no,no,no,no,no,no,no,engineering
+e7,User is posting hate speech in the community forum urgently,no,no,no,no,no,no,no,no,no,no,trust_safety
+e8,Where can I find documentation for the starter tier?,no,no,no,no,no,no,no,no,no,no,general
+e9,Requesting refund for unused seats on enterprise invoice,no,no,yes,no,yes,no,no,no,yes,no,billing
+e10,Stack trace shows NullPointerException in payment-service,no,no,no,no,no,no,no,no,no,yes,engineering
+e11,Report: NSFW image uploaded to public gallery,no,no,no,no,no,no,no,no,no,no,trust_safety
+e12,Can you explain the difference between pro and free?,no,no,no,yes,no,no,no,no,no,no,general
+e13,Billing portal will not let me download last month receipt,yes,no,no,no,no,yes,no,no,no,no,billing
+e14,Production deploy broke auth; urgent outage,no,no,no,no,no,no,no,no,no,no,engineering
+e15,Threatening messages in direct chat need moderation,no,no,no,no,no,no,yes,no,no,no,trust_safety
+e16,I forgot my username and cannot log in,no,no,no,no,no,no,no,no,no,no,general
+e17,Double billing after upgrading to enterprise,yes,no,yes,no,no,no,no,no,no,no,billing
+e18,SDK sample code throws TypeError on node 20,no,yes,no,no,no,no,no,no,no,no,engineering
+e19,Please ban the spam botnet accounts flooding us,no,no,no,no,no,no,no,yes,no,no,trust_safety
+e20,Thanks for the product; just exploring features,no,no,no,no,no,no,no,no,no,no,general
