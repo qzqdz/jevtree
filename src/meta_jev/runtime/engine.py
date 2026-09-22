@@ -1,19 +1,50 @@
-"""Runtime: execute SOP / tree on observations (stub — P3)."""
+"""Local runtime for deterministic SOP / tree execution."""
 
 from __future__ import annotations
 
 from typing import Any
 
+from meta_jev.core.sop import DecisionSOP
+from meta_jev.core.tree import IGDecisionTreeGrower, TreeLeaf, TreeNode
+
 
 class RuntimeEngine:
-    """Run a DecisionSOP or grown tree against an observation dict.
+    """Run a deterministic tree or exported tree SOP on one observation.
 
-    Does not score Acc/F1 — callers that need hard-budget metrics must use
-    `meta-jev eval-afa` / meta_jev.eval.protocol.
+    Jev-backed nodes remain declarative and are rejected with a clear error;
+    this runtime deliberately never calls a remote model or evaluates arbitrary
+    Python expressions.
     """
 
-    def run_sop(self, sop: Any, obs: dict[str, Any]) -> Any:
-        raise NotImplementedError("RuntimeEngine.run_sop — P3")
+    def run_sop(self, sop: DecisionSOP | dict[str, Any], obs: dict[str, Any]) -> Any:
+        if isinstance(sop, dict):
+            sop = DecisionSOP.from_dict(sop)
+        errors = sop.validate()
+        if errors:
+            raise ValueError("invalid SOP: " + "; ".join(errors))
+        if sop.tree is not None:
+            return self.run_tree_payload(sop.tree, obs)
+        raise NotImplementedError(
+            "JevNode execution requires a Jev provider; use an exported IG tree SOP"
+        )
 
     def run_tree(self, tree: Any, obs: dict[str, Any]) -> Any:
-        raise NotImplementedError("RuntimeEngine.run_tree — P3")
+        if isinstance(tree, IGDecisionTreeGrower):
+            return tree.predict(obs)
+        if isinstance(tree, (TreeNode, TreeLeaf)):
+            return tree.predict(obs)
+        if isinstance(tree, dict):
+            if tree.get("type") == "IGDecisionTree":
+                return self.run_tree_payload(tree, obs)
+            if tree.get("kind") in {"node", "leaf"}:
+                node = TreeLeaf.from_dict(tree) if tree.get("kind") == "leaf" else TreeNode.from_dict(tree)
+                return node.predict(obs)
+        raise TypeError(f"unsupported tree type: {type(tree).__name__}")
+
+    def run_tree_payload(self, payload: dict[str, Any], obs: dict[str, Any]) -> Any:
+        """Run a serialized IG tree, applying its train-time binning policy."""
+        if payload.get("kind") == "IGDecisionTree":
+            payload = {"type": "IGDecisionTree", **payload}
+        if payload.get("type") != "IGDecisionTree":
+            raise ValueError("expected an IGDecisionTree payload")
+        return IGDecisionTreeGrower.from_json(payload).predict(obs)

@@ -321,8 +321,31 @@ class IGDecisionTreeGrower(DecisionTreeGrower):
         )[0]
         return self.tree_.predict(prepared)
 
-    def export_sop(self, tree: Any) -> Any:  # noqa: ARG002
-        raise NotImplementedError("export_sop — P3")
+    def export_sop(self, tree: Any) -> Any:
+        """Export the fitted tree as a deterministic, locally runnable SOP."""
+        if tree is None:
+            raise ValueError("tree is required")
+        if tree is not self.tree_ and not isinstance(tree, (TreeNode, TreeLeaf)):
+            raise TypeError("tree must be a TreeNode or TreeLeaf")
+        from meta_jev.core.sop import DecisionSOP
+
+        payload = {
+            "kind": "IGDecisionTree",
+            "label_key": self.label_key_,
+            "feature_keys": list(self.feature_keys_),
+            "min_samples": self.min_samples,
+            "continuous_keys": list(self.continuous_keys),
+            "n_bins": self.n_bins,
+            "bin_seed": self.bin_seed,
+            "tree": tree.to_dict(),
+        }
+        return DecisionSOP(
+            name="meta-jev-tree",
+            description="Deterministic IG decision tree exported as a local SOP",
+            nodes=[],
+            output="tree",
+            tree=payload,
+        )
 
     def to_json(self) -> dict[str, Any]:
         if self.tree_ is None:
@@ -342,6 +365,31 @@ class IGDecisionTreeGrower(DecisionTreeGrower):
         with open(path, "w", encoding="utf-8", newline="\n") as f:
             json.dump(self.to_json(), f, indent=2, ensure_ascii=False)
             f.write("\n")
+
+
+    @classmethod
+    def from_json(cls, payload: dict[str, Any]) -> "IGDecisionTreeGrower":
+        """Restore a fitted grower from :meth:`to_json` output."""
+        if payload.get("type") != "IGDecisionTree":
+            raise ValueError("expected an IGDecisionTree payload")
+        obj = cls(
+            min_samples=int(payload.get("min_samples", 1)),
+            continuous_keys=payload.get("continuous_keys") or [],
+            n_bins=int(payload.get("n_bins", 4)),
+            bin_seed=int(payload.get("bin_seed", 0)),
+        )
+        obj.label_key_ = payload.get("label_key")
+        obj.feature_keys_ = list(payload.get("feature_keys") or [])
+        tree = payload.get("tree")
+        if not isinstance(tree, dict):
+            raise ValueError("missing tree payload")
+        obj.tree_ = TreeLeaf.from_dict(tree) if tree.get("kind") == "leaf" else TreeNode.from_dict(tree)
+        return obj
+
+    @classmethod
+    def load(cls, path: str) -> "IGDecisionTreeGrower":
+        with open(path, encoding="utf-8") as f:
+            return cls.from_json(json.load(f))
 
 
 __all__ = [

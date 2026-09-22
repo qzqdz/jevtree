@@ -50,6 +50,9 @@ class DecisionSOP:
     nodes: list[FeatureNode | JevNode] # 决策流程图（DAG）
     output: str                       # 最终决策表达式，如 "nodes['router']['pick']['choice']"
     jev_model: str = "typesafe-ai/jev"
+    # Optional deterministic tree payload produced by IGDecisionTreeGrower.
+    # This preserves normal Jev SOP JSON while enabling local tree execution.
+    tree: dict[str, Any] | None = None
 
     @property
     def hash(self) -> str:
@@ -79,13 +82,17 @@ class DecisionSOP:
                     "state": n.state,
                     "questions": qs,
                 })
-        return {
+        payload = {
             "version": 2,
             "name": self.name,
             "jev_model": self.jev_model,
             "nodes": nodes,
             "output": self.output,
         }
+        if self.tree is not None:
+            payload["kind"] = "tree"
+            payload["tree"] = self.tree
+        return payload
 
     @classmethod
     def from_dict(cls, d: dict) -> "DecisionSOP":
@@ -110,6 +117,7 @@ class DecisionSOP:
             nodes=nodes,
             output=d["output"],
             jev_model=d.get("jev_model", "typesafe-ai/jev"),
+            tree=d.get("tree"),
         )
 
     def validate(self) -> list[str]:
@@ -120,8 +128,12 @@ class DecisionSOP:
         if not self.name.strip():
             errors.append("SOP name is empty")
 
-        if not self.nodes:
+        if not self.nodes and self.tree is None:
             errors.append("SOP has no nodes")
+
+        if self.tree is not None:
+            if not isinstance(self.tree, dict) or self.tree.get("kind") != "IGDecisionTree":
+                errors.append("tree payload must be an IGDecisionTree")
 
         for n in self.nodes:
             if n.id in node_ids:

@@ -23,6 +23,19 @@ meta-jev eval-afa --config configs/eval_miniboone_hard.yaml
 
 `eval-afa` is the **only** path to Acc/F1-vs-budget. Examples must not claim leaderboard numbers.
 
+## Five-minute local loop
+
+Grow a deterministic IG tree, export a local SOP, and run it without a remote Jev provider:
+
+```bash
+meta-jev grow --dataset cube_without_noise \
+  --out /tmp/tree.json --sop-out /tmp/tree.sop.json
+printf '{"f0": 1, "f1": 1, "f2": 1, "f3": 1, "f4": 0}' > /tmp/obs.json
+meta-jev run --sop /tmp/tree.sop.json --input /tmp/obs.json
+```
+
+The exported tree SOP and `meta_jev.sdk.decide()` use the same saved binning and tree payload, so a saved artifact can be loaded and run locally. Jev-backed nodes remain declarative until a Jev provider is configured.
+
 ```bash
 meta-jev grow --help
 meta-jev validate --help

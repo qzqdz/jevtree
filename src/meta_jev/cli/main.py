@@ -174,8 +174,14 @@ def cmd_grow(args: argparse.Namespace) -> int:
     out_path = Path(out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     grower.save(str(out_path))
+    if args.sop_out:
+        sop = grower.export_sop(tree)
+        sop_path = Path(args.sop_out)
+        sop_path.parent.mkdir(parents=True, exist_ok=True)
+        sop_path.write_text(json.dumps(sop.to_dict(), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     n_nodes = _count_tree_nodes(tree)
-    print(f"grew tree → {out_path}  samples={len(rows)} features={len(feature_keys)} nodes≈{n_nodes}")
+    suffix = f"  sop → {args.sop_out}" if args.sop_out else ""
+    print(f"grew tree → {out_path}  samples={len(rows)} features={len(feature_keys)} nodes≈{n_nodes}{suffix}")
     return 0
 
 
@@ -210,10 +216,19 @@ def cmd_validate(args: argparse.Namespace) -> int:
 
 
 def cmd_run(args: argparse.Namespace) -> int:
-    return _nyi(
-        "run",
-        "Will run an SOP/tree on one instance or a batch file via runtime.engine.",
-    )
+    if not args.sop:
+        print("meta-jev run: --sop is required", file=sys.stderr)
+        return 2
+    try:
+        obs = json.loads(Path(args.input).read_text(encoding="utf-8")) if args.input else {}
+        payload = json.loads(Path(args.sop).read_text(encoding="utf-8"))
+        from meta_jev.runtime.engine import RuntimeEngine
+        result = RuntimeEngine().run_sop(payload, obs)
+    except (OSError, KeyError, json.JSONDecodeError, TypeError, ValueError, NotImplementedError) as exc:
+        print(f"meta-jev run: {exc}", file=sys.stderr)
+        return 1
+    print(json.dumps({"decision": result}, ensure_ascii=False, default=str))
+    return 0
 
 
 def cmd_eval_afa(args: argparse.Namespace) -> int:
@@ -541,6 +556,7 @@ def build_parser() -> argparse.ArgumentParser:
     g.add_argument("--max-depth", type=int, default=None)
     g.add_argument("--min-samples", type=int, default=1)
     g.add_argument("--seed", type=int, default=0)
+    g.add_argument("--sop-out", help="Optional path for a locally runnable exported tree SOP")
     g.set_defaults(func=cmd_grow)
 
     v = sub.add_parser("validate", help="Validate SOP JSON")
