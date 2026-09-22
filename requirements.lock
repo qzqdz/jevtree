@@ -1,0 +1,5 @@
+# Locked runtime deps for Meta-Jev eval-afa (exact pins for audit reproducibility).
+# Recreate: python3 -m venv .venv && source .venv/bin/activate
+#           pip install -r requirements.lock && pip install -e .
+# Prefer `uv lock` / uv.lock when uv is available.
+numpy==2.5.3

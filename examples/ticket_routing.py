@@ -4,9 +4,15 @@
 输入：{"ticket": "我的发票开错了，需要重新开一张"}
 输出：{"choice": "billing", "probabilities": {...}, "confidence": 0.87}
 """
-import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
-from core.sop import classify_sop, score_sop, bool_sop, DecisionSOP, FeatureNode, JevNode, JevQuestion
+from meta_jev.core.sop import (
+    DecisionSOP,
+    FeatureNode,
+    JevNode,
+    JevQuestion,
+    bool_sop,
+    classify_sop,
+    score_sop,
+)
 
 
 # ── 示例 1：最简分类 SOP ──────────────────────────────────────────

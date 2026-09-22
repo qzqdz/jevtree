@@ -33,8 +33,8 @@ llm_model/
 Thumbs.db
 
 # 数据和日志
-data/
-logs/
+/data/
+/logs/
 *.log
 *.jsonl
 
@@ -42,3 +42,10 @@ logs/
 _test_*.py
 _tmp_*
 .cache/
+
+# Eval artifacts (keep directory via results/.gitkeep)
+results/*
+!results/.gitkeep
+!results/.gitignore
+# cached tabular downloads (also covered by data/)
+/data/cache/

@@ -1,0 +1,35 @@
+{
+  "dataset_id": "miniboone",
+  "dataset_path": "data/cache/miniboone_uci_pid.txt",
+  "dataset_hash": null,
+  "split_seed": 0,
+  "n_train": 2000,
+  "n_test": 500,
+  "allow_fallback": true,
+  "cache_dir": null,
+  "hard_budgets": [5, 10, 20, 40],
+  "budget_unit_cost": 1.0,
+  "policy": {
+    "name": "random",
+    "criterion": "gain",
+    "n_bins": 4,
+    "bin_seed": 0,
+    "seed": 0,
+    "force_acquisition": true,
+    "has_builtin_classifier": true
+  },
+  "predictor": {
+    "name": "policy.predict",
+    "path": null,
+    "note": "Self-eval uses builtin policy.predict; shared MatchMajorityPredictor with ig_static/sequential"
+  },
+  "output": {
+    "results_dir": "results/",
+    "jsonl": true,
+    "summary": true
+  },
+  "provenance": {
+    "log_git_commit": true,
+    "log_config_path": true
+  }
+}

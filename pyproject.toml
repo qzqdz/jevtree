@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "meta-jev"
+version = "0.1.0"
+description = "Meta-Jev: grow decision SOPs / trees via information gain; evaluate under AFA hard-budget protocols"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [{ name = "Meta-Jev contributors" }]
+dependencies = [
+  "numpy==2.5.3",
+]
+
+[project.optional-dependencies]
+# Heavy AFABench stack (torch/lightning/hydra/snakemake/…) deferred; pin when wiring adapter.
+eval = [
+  "numpy==2.5.3",
+]
+
+[project.scripts]
+meta-jev = "meta_jev.cli.main:main"
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["meta_jev*"]

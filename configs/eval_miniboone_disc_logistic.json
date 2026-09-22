@@ -1,0 +1,42 @@
+{
+  "dataset_id": "miniboone",
+  "dataset_path": "data/cache/miniboone_uci_pid.txt",
+  "dataset_hash": null,
+  "split_seed": 0,
+  "n_train": 2000,
+  "n_test": 500,
+  "allow_fallback": true,
+  "cache_dir": null,
+  "hard_budgets": [
+    5,
+    10,
+    20,
+    40
+  ],
+  "budget_unit_cost": 1.0,
+  "predictor": {
+    "name": "logistic_impute",
+    "path": null,
+    "note": "Shared MaskedLogisticPredictor (mean-impute unobserved) across policies"
+  },
+  "output": {
+    "results_dir": "results/",
+    "jsonl": true,
+    "summary": true
+  },
+  "provenance": {
+    "log_git_commit": true,
+    "log_config_path": true
+  },
+  "policy": {
+    "name": "ig_discriminative",
+    "criterion": "gain",
+    "n_bins": 4,
+    "bin_seed": 0,
+    "seed": 0,
+    "force_acquisition": true,
+    "has_builtin_classifier": true,
+    "min_samples": 20,
+    "max_candidates": 15
+  }
+}

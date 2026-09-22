@@ -1,0 +1,39 @@
+# Pinned first *public-curve* eval config.
+# Official invocation ONLY:
+#   PYTHONPATH=src python3 -m meta_jev eval-afa --config configs/eval_miniboone_hard.json
+#
+# dataset_path: UCI MiniBooNE_PID.txt cached under data/cache/ after first download.
+# If MiniBooNE download fails, allow_fallback=true loads diabetes (OpenML 37)
+# and writes that dataset_id into results/summary.json (keep this miniboone config).
+
+dataset_id: miniboone
+dataset_path: data/cache/miniboone_uci_pid.txt  # populated by loader on first run
+dataset_hash: null
+
+split_seed: 0
+n_train: 2000
+n_test: 500
+allow_fallback: true
+hard_budgets: [5, 10, 20, 40]
+budget_unit_cost: 1.0
+
+policy:
+  name: ig_static
+  criterion: gain
+  n_bins: 4
+  bin_seed: 0
+  force_acquisition: true
+  has_builtin_classifier: true
+
+predictor:
+  name: policy.predict
+  path: null
+
+output:
+  results_dir: results/
+  jsonl: true
+  summary: true
+
+provenance:
+  log_git_commit: true
+  log_config_path: true

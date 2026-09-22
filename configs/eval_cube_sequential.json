@@ -1,0 +1,26 @@
+{
+  "dataset_id": "cube_without_noise",
+  "n_samples": 256,
+  "n_features": 5,
+  "split_seed": 0,
+  "hard_budgets": [1, 2, 3],
+  "budget_unit_cost": 1.0,
+  "policy": {
+    "name": "sequential",
+    "criterion": "gain",
+    "n_bins": 4,
+    "bin_seed": 0,
+    "seed": 0,
+    "force_acquisition": true,
+    "has_builtin_classifier": true
+  },
+  "output": {
+    "results_dir": "results/",
+    "jsonl": true,
+    "summary": true
+  },
+  "provenance": {
+    "log_git_commit": true,
+    "log_config_path": true
+  }
+}

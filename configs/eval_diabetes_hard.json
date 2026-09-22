@@ -1,0 +1,32 @@
+{
+  "dataset_id": "diabetes",
+  "dataset_path": "data/cache/diabetes_openml_37.csv",
+  "dataset_hash": null,
+  "split_seed": 0,
+  "n_train": 500,
+  "n_test": 200,
+  "allow_fallback": false,
+  "hard_budgets": [5, 10, 20],
+  "budget_unit_cost": 1.0,
+  "policy": {
+    "name": "ig_static",
+    "criterion": "gain",
+    "n_bins": 4,
+    "bin_seed": 0,
+    "force_acquisition": true,
+    "has_builtin_classifier": true
+  },
+  "predictor": {
+    "name": "policy.predict",
+    "path": null
+  },
+  "output": {
+    "results_dir": "results/",
+    "jsonl": true,
+    "summary": true
+  },
+  "provenance": {
+    "log_git_commit": true,
+    "log_config_path": true
+  }
+}
