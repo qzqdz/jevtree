@@ -133,6 +133,10 @@ class TreeLeaf:
     def predict(self, row: dict[str, Any]) -> Any:  # noqa: ARG002
         return self.prediction
 
+    def predict_path(self, row: dict[str, Any]) -> tuple[Any, list[dict[str, Any]]]:  # noqa: ARG002
+        """Return (prediction, path steps); leaves contribute no questions."""
+        return self.prediction, []
+
     def to_dict(self) -> dict[str, Any]:
         return {
             "kind": "leaf",
@@ -165,6 +169,16 @@ class TreeNode:
         if child is None:
             return self.default
         return child.predict(row)
+
+    def predict_path(self, row: dict[str, Any]) -> tuple[Any, list[dict[str, Any]]]:
+        """Walk the tree collecting asked features (auditable question trace)."""
+        v = row.get(self.feature)
+        steps: list[dict[str, Any]] = [{"feature": self.feature, "value": v}]
+        child = self.children.get(v)
+        if child is None:
+            return self.default, steps
+        pred, rest = child.predict_path(row)
+        return pred, steps + rest
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -320,6 +334,19 @@ class IGDecisionTreeGrower(DecisionTreeGrower):
             seed=self.bin_seed,
         )[0]
         return self.tree_.predict(prepared)
+
+    def predict_path(self, row: dict[str, Any]) -> tuple[Any, list[dict[str, Any]]]:
+        """Predict with an auditable feature/question path (after train binning)."""
+        if self.tree_ is None:
+            raise RuntimeError("IGDecisionTreeGrower.fit must be called first")
+        prepared = bin_rows_continuous(
+            [row],
+            self.feature_keys_,
+            continuous_keys=self.continuous_keys,
+            n_bins=self.n_bins,
+            seed=self.bin_seed,
+        )[0]
+        return self.tree_.predict_path(prepared)
 
     def export_sop(self, tree: Any) -> Any:
         """Export the fitted tree as a deterministic, locally runnable SOP."""

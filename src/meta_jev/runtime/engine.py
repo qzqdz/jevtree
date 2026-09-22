@@ -48,3 +48,38 @@ class RuntimeEngine:
         if payload.get("type") != "IGDecisionTree":
             raise ValueError("expected an IGDecisionTree payload")
         return IGDecisionTreeGrower.from_json(payload).predict(obs)
+
+
+    def run_tree_payload_traced(
+        self, payload: dict[str, Any], obs: dict[str, Any]
+    ) -> dict[str, Any]:
+        """Like run_tree_payload but also returns the feature/question path."""
+        if payload.get("kind") == "IGDecisionTree":
+            payload = {"type": "IGDecisionTree", **payload}
+        if payload.get("type") != "IGDecisionTree":
+            raise ValueError("expected an IGDecisionTree payload")
+        grower = IGDecisionTreeGrower.from_json(payload)
+        decision, path = grower.predict_path(obs)
+        return {
+            "decision": decision,
+            "path": path,
+            "questions_used": len(path),
+        }
+
+    def run_sop_traced(
+        self, sop: DecisionSOP | dict[str, Any], obs: dict[str, Any]
+    ) -> dict[str, Any]:
+        """Run SOP and return decision + auditable question path.
+
+        Only IG tree SOPs are supported locally (same constraint as run_sop).
+        """
+        if isinstance(sop, dict):
+            sop = DecisionSOP.from_dict(sop)
+        errors = sop.validate()
+        if errors:
+            raise ValueError("invalid SOP: " + "; ".join(errors))
+        if sop.tree is not None:
+            return self.run_tree_payload_traced(sop.tree, obs)
+        raise NotImplementedError(
+            "JevNode execution requires a Jev provider; use an exported IG tree SOP"
+        )

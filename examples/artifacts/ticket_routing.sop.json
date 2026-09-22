@@ -1,0 +1,354 @@
+{
+  "version": 2,
+  "name": "meta-jev-tree",
+  "jev_model": "typesafe-ai/jev",
+  "nodes": [],
+  "output": "tree",
+  "kind": "tree",
+  "tree": {
+    "kind": "IGDecisionTree",
+    "label_key": "route",
+    "feature_keys": [
+      "product_area",
+      "urgency_keywords",
+      "account_tier",
+      "error_code_present",
+      "prior_escalation",
+      "refund_mentioned"
+    ],
+    "min_samples": 2,
+    "continuous_keys": [],
+    "n_bins": 4,
+    "bin_seed": 0,
+    "tree": {
+      "kind": "node",
+      "feature": "refund_mentioned",
+      "default": "billing",
+      "n_samples": 120,
+      "children": {
+        "\"no\"": {
+          "kind": "node",
+          "feature": "product_area",
+          "default": "engineering",
+          "n_samples": 51,
+          "children": {
+            "\"general\"": {
+              "kind": "node",
+              "feature": "error_code_present",
+              "default": "L1_general",
+              "n_samples": 9,
+              "children": {
+                "\"no\"": {
+                  "kind": "leaf",
+                  "prediction": "L1_general",
+                  "counts": {
+                    "L1_general": 6
+                  },
+                  "n_samples": 6
+                },
+                "\"yes\"": {
+                  "kind": "leaf",
+                  "prediction": "engineering",
+                  "counts": {
+                    "engineering": 3
+                  },
+                  "n_samples": 3
+                }
+              }
+            },
+            "\"account\"": {
+              "kind": "node",
+              "feature": "error_code_present",
+              "default": "L1_general",
+              "n_samples": 14,
+              "children": {
+                "\"no\"": {
+                  "kind": "node",
+                  "feature": "account_tier",
+                  "default": "L1_general",
+                  "n_samples": 9,
+                  "children": {
+                    "\"free\"": {
+                      "kind": "leaf",
+                      "prediction": "L1_general",
+                      "counts": {
+                        "L1_general": 5
+                      },
+                      "n_samples": 5
+                    },
+                    "\"enterprise\"": {
+                      "kind": "leaf",
+                      "prediction": "engineering",
+                      "counts": {
+                        "engineering": 1
+                      },
+                      "n_samples": 1
+                    },
+                    "\"pro\"": {
+                      "kind": "leaf",
+                      "prediction": "L1_general",
+                      "counts": {
+                        "L1_general": 3
+                      },
+                      "n_samples": 3
+                    }
+                  }
+                },
+                "\"yes\"": {
+                  "kind": "leaf",
+                  "prediction": "engineering",
+                  "counts": {
+                    "engineering": 5
+                  },
+                  "n_samples": 5
+                }
+              }
+            },
+            "\"billing\"": {
+              "kind": "node",
+              "feature": "error_code_present",
+              "default": "engineering",
+              "n_samples": 9,
+              "children": {
+                "\"yes\"": {
+                  "kind": "leaf",
+                  "prediction": "engineering",
+                  "counts": {
+                    "engineering": 5
+                  },
+                  "n_samples": 5
+                },
+                "\"no\"": {
+                  "kind": "leaf",
+                  "prediction": "billing",
+                  "counts": {
+                    "billing": 4
+                  },
+                  "n_samples": 4
+                }
+              }
+            },
+            "\"content\"": {
+              "kind": "node",
+              "feature": "account_tier",
+              "default": "engineering",
+              "n_samples": 14,
+              "children": {
+                "\"enterprise\"": {
+                  "kind": "leaf",
+                  "prediction": "engineering",
+                  "counts": {
+                    "engineering": 5
+                  },
+                  "n_samples": 5
+                },
+                "\"free\"": {
+                  "kind": "node",
+                  "feature": "prior_escalation",
+                  "default": "L1_general",
+                  "n_samples": 5,
+                  "children": {
+                    "\"yes\"": {
+                      "kind": "leaf",
+                      "prediction": "L1_general",
+                      "counts": {
+                        "L1_general": 2
+                      },
+                      "n_samples": 2
+                    },
+                    "\"no\"": {
+                      "kind": "leaf",
+                      "prediction": "trust_safety",
+                      "counts": {
+                        "trust_safety": 2,
+                        "engineering": 1
+                      },
+                      "n_samples": 3
+                    }
+                  }
+                },
+                "\"pro\"": {
+                  "kind": "node",
+                  "feature": "error_code_present",
+                  "default": "engineering",
+                  "n_samples": 4,
+                  "children": {
+                    "\"yes\"": {
+                      "kind": "leaf",
+                      "prediction": "engineering",
+                      "counts": {
+                        "engineering": 3
+                      },
+                      "n_samples": 3
+                    },
+                    "\"no\"": {
+                      "kind": "leaf",
+                      "prediction": "trust_safety",
+                      "counts": {
+                        "trust_safety": 1
+                      },
+                      "n_samples": 1
+                    }
+                  }
+                }
+              }
+            },
+            "\"api\"": {
+              "kind": "node",
+              "feature": "urgency_keywords",
+              "default": "engineering",
+              "n_samples": 5,
+              "children": {
+                "\"yes\"": {
+                  "kind": "leaf",
+                  "prediction": "engineering",
+                  "counts": {
+                    "engineering": 4
+                  },
+                  "n_samples": 4
+                },
+                "\"no\"": {
+                  "kind": "leaf",
+                  "prediction": "trust_safety",
+                  "counts": {
+                    "trust_safety": 1
+                  },
+                  "n_samples": 1
+                }
+              }
+            }
+          }
+        },
+        "\"yes\"": {
+          "kind": "node",
+          "feature": "product_area",
+          "default": "billing",
+          "n_samples": 69,
+          "children": {
+            "\"account\"": {
+              "kind": "leaf",
+              "prediction": "billing",
+              "counts": {
+                "billing": 19
+              },
+              "n_samples": 19
+            },
+            "\"content\"": {
+              "kind": "leaf",
+              "prediction": "billing",
+              "counts": {
+                "billing": 13
+              },
+              "n_samples": 13
+            },
+            "\"general\"": {
+              "kind": "node",
+              "feature": "account_tier",
+              "default": "billing",
+              "n_samples": 13,
+              "children": {
+                "\"enterprise\"": {
+                  "kind": "leaf",
+                  "prediction": "billing",
+                  "counts": {
+                    "billing": 5
+                  },
+                  "n_samples": 5
+                },
+                "\"free\"": {
+                  "kind": "leaf",
+                  "prediction": "billing",
+                  "counts": {
+                    "billing": 3
+                  },
+                  "n_samples": 3
+                },
+                "\"pro\"": {
+                  "kind": "node",
+                  "feature": "error_code_present",
+                  "default": "billing",
+                  "n_samples": 5,
+                  "children": {
+                    "\"yes\"": {
+                      "kind": "leaf",
+                      "prediction": "billing",
+                      "counts": {
+                        "billing": 3
+                      },
+                      "n_samples": 3
+                    },
+                    "\"no\"": {
+                      "kind": "leaf",
+                      "prediction": "L1_general",
+                      "counts": {
+                        "L1_general": 1,
+                        "billing": 1
+                      },
+                      "n_samples": 2
+                    }
+                  }
+                }
+              }
+            },
+            "\"api\"": {
+              "kind": "node",
+              "feature": "account_tier",
+              "default": "billing",
+              "n_samples": 13,
+              "children": {
+                "\"free\"": {
+                  "kind": "leaf",
+                  "prediction": "billing",
+                  "counts": {
+                    "billing": 6
+                  },
+                  "n_samples": 6
+                },
+                "\"pro\"": {
+                  "kind": "node",
+                  "feature": "error_code_present",
+                  "default": "billing",
+                  "n_samples": 3,
+                  "children": {
+                    "\"no\"": {
+                      "kind": "leaf",
+                      "prediction": "billing",
+                      "counts": {
+                        "billing": 2
+                      },
+                      "n_samples": 2
+                    },
+                    "\"yes\"": {
+                      "kind": "leaf",
+                      "prediction": "trust_safety",
+                      "counts": {
+                        "trust_safety": 1
+                      },
+                      "n_samples": 1
+                    }
+                  }
+                },
+                "\"enterprise\"": {
+                  "kind": "leaf",
+                  "prediction": "billing",
+                  "counts": {
+                    "billing": 4
+                  },
+                  "n_samples": 4
+                }
+              }
+            },
+            "\"billing\"": {
+              "kind": "leaf",
+              "prediction": "billing",
+              "counts": {
+                "billing": 11
+              },
+              "n_samples": 11
+            }
+          }
+        }
+      }
+    }
+  }
+}

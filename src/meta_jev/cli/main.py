@@ -157,6 +157,13 @@ def cmd_grow(args: argparse.Namespace) -> int:
         rows = split["train"] + split["test"]
         feature_keys = split["feature_keys"]
         label_key = label or split["label_key"]
+    elif data_path in ("ticket_routing", "ticket"):
+        from meta_jev.data.ticket_routing import load_ticket_routing_split
+
+        split = load_ticket_routing_split(seed=int(args.seed or 0))
+        rows = split["train"] + split["test"]
+        feature_keys = split["feature_keys"]
+        label_key = label or split["label_key"]
     else:
         if not label:
             print("meta-jev grow: --label required for CSV", file=sys.stderr)
@@ -223,11 +230,22 @@ def cmd_run(args: argparse.Namespace) -> int:
         obs = json.loads(Path(args.input).read_text(encoding="utf-8")) if args.input else {}
         payload = json.loads(Path(args.sop).read_text(encoding="utf-8"))
         from meta_jev.runtime.engine import RuntimeEngine
-        result = RuntimeEngine().run_sop(payload, obs)
+        engine = RuntimeEngine()
+        if getattr(args, "trace", False):
+            traced = engine.run_sop_traced(payload, obs)
+            for i, step in enumerate(traced.get("path") or [], start=1):
+                print(f"Q{i}: {step.get('feature')} = {step.get('value')}")
+            print(
+                f"Decision: {traced.get('decision')}  "
+                f"(questions used: {traced.get('questions_used')})"
+            )
+            print(json.dumps(traced, ensure_ascii=False, default=str))
+        else:
+            result = engine.run_sop(payload, obs)
+            print(json.dumps({"decision": result}, ensure_ascii=False, default=str))
     except (OSError, KeyError, json.JSONDecodeError, TypeError, ValueError, NotImplementedError) as exc:
         print(f"meta-jev run: {exc}", file=sys.stderr)
         return 1
-    print(json.dumps({"decision": result}, ensure_ascii=False, default=str))
     return 0
 
 
@@ -548,7 +566,7 @@ def build_parser() -> argparse.ArgumentParser:
     sub = p.add_subparsers(dest="command", required=True)
 
     g = sub.add_parser("grow", help="Grow tree/SOP from tabular dataset via IG")
-    g.add_argument("--data", help="CSV path or 'cube' / 'cube_without_noise'")
+    g.add_argument("--data", help="CSV path or 'cube' / 'cube_without_noise' / 'ticket_routing'")
     g.add_argument("--dataset", help="Alias for --data")
     g.add_argument("--label", help="Label column name")
     g.add_argument("--out", help="Output path for grown tree JSON")
@@ -566,6 +584,11 @@ def build_parser() -> argparse.ArgumentParser:
     r = sub.add_parser("run", help="Run SOP/tree on one instance or file")
     r.add_argument("--sop", help="Path to SOP / tree")
     r.add_argument("--input", help="Observation JSON or batch file")
+    r.add_argument(
+        "--trace",
+        action="store_true",
+        help="Print auditable feature/question path (demo UX)",
+    )
     r.set_defaults(func=cmd_run)
 
     e = sub.add_parser(

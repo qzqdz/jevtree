@@ -23,6 +23,28 @@ meta-jev eval-afa --config configs/eval_miniboone_hard.yaml
 
 `eval-afa` is the **only** path to Acc/F1-vs-budget. Examples must not claim leaderboard numbers.
 
+## Five-minute story demo（工单路由）
+
+Ask fewer questions, get a clear routing decision, every step auditable.
+Synthetic support tickets → IG tree → local SOP → bilingual question trace.
+**Demo only** — not a production classifier, and not Acc@budget / AFABench.
+
+```bash
+# one-command classmate path
+.venv/bin/python examples/ticket_routing.py
+
+# or CLI (same story)
+meta-jev grow --dataset ticket_routing \
+  --out examples/artifacts/ticket_routing_tree.json \
+  --sop-out examples/artifacts/ticket_routing.sop.json --seed 42
+printf '{"product_area":"api","urgency_keywords":"yes","account_tier":"enterprise","error_code_present":"yes","prior_escalation":"no","refund_mentioned":"no"}' \
+  > /tmp/ticket_obs.json
+meta-jev run --sop examples/artifacts/ticket_routing.sop.json \
+  --input /tmp/ticket_obs.json --trace
+```
+
+Pitch: 在问题预算下，用信息增益长出可审计的客服工单路由 SOP（billing / engineering / trust_safety / L1_general）。
+
 ## Five-minute local loop
 
 Grow a deterministic IG tree, export a local SOP, and run it without a remote Jev provider:
@@ -59,4 +81,4 @@ pip install -r requirements.lock   # or: uv sync  (if uv.lock present)
 ## Demos (not scoring)
 
 - `examples/entropy_split_demo.py` — Play-Tennis IG / gain-ratio sanity
-- `examples/ticket_routing.py` — secondary SOP construction example
+- `examples/ticket_routing.py` — five-minute ticket-routing story (grow→SOP→trace)
