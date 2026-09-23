@@ -30,7 +30,7 @@ Small demo corpora under `examples/data/`. Prefer dozens–low hundreds of rows 
 | File | Origin |
 |------|--------|
 | `messy_notes_sample.txt` | Original Meta-Jev messy-paste fixture |
-| `ticket_routing.csv` | Original optional vertical preset on the same spine |
+| `ticket_routing.csv` | Sample table for `meta-jev decide` (not a separate CLI) |
 
 ## Research pointers (citations only — not product claims)
 

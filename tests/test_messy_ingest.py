@@ -70,9 +70,7 @@ def test_messy_ingest_no_key_clear_error(monkeypatch) -> None:  # noqa: ANN001
     def boom(*_a, **_k):
         raise RuntimeError(
             "No META_JEV_LLM_API_KEY in .env. "
-            "Messy-text ingest needs an LLM key, or use the CSV / "
-            "text-batch path: meta-jev grow --csv ... / "
-            "meta-jev ingest-batch --csv ..."
+            "Use `meta-jev decide --data ... --goal ...` with META_JEV_LLM_* set."
         )
 
     # Force the no-key path by injecting failure when chat_fn is None
