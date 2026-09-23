@@ -5,6 +5,8 @@ from meta_jev.data.csv_ingest import ingest_csv
 from meta_jev.data.feature_table import FeatureTable, IngestResult
 from meta_jev.data.grow_pipeline import grow_from_table
 from meta_jev.data.messy_ingest import ingest_messy_text
+from meta_jev.data.universal_ingest import ingest_data_with_goal
+from meta_jev.data.decide_pipeline import run_decide
 from meta_jev.data.tabular import load_tabular_split
 from meta_jev.data.text_batch import ingest_text_batch
 from meta_jev.data.ticket_routing import (
@@ -20,6 +22,8 @@ __all__ = [
     "grow_from_table",
     "ingest_csv",
     "ingest_messy_text",
+    "ingest_data_with_goal",
+    "run_decide",
     "ingest_text_batch",
     "load_cube_split",
     "load_tabular_split",

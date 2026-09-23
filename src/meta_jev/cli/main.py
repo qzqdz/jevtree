@@ -1,7 +1,7 @@
 """Official Meta-Jev CLI.
 
-All AFA hard-budget scoring MUST go through `meta-jev eval-afa`.
-Examples/ demos must not claim leaderboard metrics.
+Primary product entry: `meta-jev decide --data PATH --goal "..."`.
+AFA hard-budget scoring: `meta-jev eval-afa`.
 """
 
 from __future__ import annotations
@@ -140,6 +140,57 @@ def _load_csv(path: Path, label: str) -> tuple[list[dict[str, Any]], list[str], 
     feature_keys = [k for k in rows[0].keys() if k != label]
     return rows, feature_keys, label
 
+
+
+
+def cmd_decide(args: argparse.Namespace) -> int:
+    """Universal entry: data path + NL goal → LLM FeatureTable → grow artifacts."""
+    from meta_jev.data.decide_pipeline import run_decide
+
+    data = getattr(args, "data", None)
+    goal = getattr(args, "goal", None)
+    if not data:
+        print("meta-jev decide: --data is required", file=sys.stderr)
+        return 2
+    if not goal or not str(goal).strip():
+        print("meta-jev decide: --goal is required (natural-language requirement)", file=sys.stderr)
+        return 2
+
+    out = getattr(args, "out", None)
+    try:
+        result = run_decide(
+            data,
+            str(goal).strip(),
+            out_dir=out,
+            criterion=getattr(args, "criterion", None) or "gain",
+            max_depth=args.max_depth,
+            min_samples=int(args.min_samples or 1),
+            seed=int(args.seed or 0),
+            trace_examples=int(getattr(args, "trace_examples", 0) or 0),
+            repo_root=_repo_root(),
+        )
+    except FileNotFoundError as exc:
+        print(f"meta-jev decide: {exc}", file=sys.stderr)
+        return 2
+    except (RuntimeError, ValueError, OSError) as exc:
+        print(f"meta-jev decide: {exc}", file=sys.stderr)
+        return 1
+
+    print(
+        f"decide ok → {result['out_dir']}  "
+        f"rows={result['n_rows']} features={result['n_features']} "
+        f"label={result['label_key']}"
+    )
+    print(f"  feature_table → {result['feature_table_json']}")
+    print(f"  tree → {result['tree_out']}")
+    print(f"  sop → {result['sop_out']}")
+    print(f"  story → {result['story_out']}")
+    if result.get("traces"):
+        print(f"  traces → {result['out_dir']}/traces.json  (n={len(result['traces'])})")
+    if getattr(args, "story", True):
+        print(result["story_zh"])
+        print(result["story_en"])
+    return 0
 
 
 def cmd_grow(args: argparse.Namespace) -> int:
@@ -296,8 +347,8 @@ def cmd_ingest_text(args: argparse.Namespace) -> int:
     except (RuntimeError, ValueError) as exc:
         print(f"meta-jev ingest-text: {exc}", file=sys.stderr)
         print(
-            "Hint: set META_JEV_LLM_* in .env, or use "
-            "`meta-jev grow --csv ...` / `meta-jev ingest-batch --csv ...`.",
+            "Hint: set META_JEV_LLM_* in .env, then use "
+            "`meta-jev decide --data ... --goal ...`.",
             file=sys.stderr,
         )
         return 1
@@ -694,21 +745,58 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="meta-jev",
         description=(
-            "Meta-Jev — bring data/materials + goal → auditable decision tree SOP. "
-            "Also: AFABench hard-budget eval via eval-afa."
+            "Meta-Jev — data + natural-language goal → auditable decision tree / SOP. "
+            "Primary entry: meta-jev decide --data PATH --goal \"...\"."
         ),
         epilog=(
-            "Story: CSV / text batch / scoring batch / messy+goal → FeatureTable → "
-            "IG tree/SOP → run --trace. Product spine demos are not Acc@budget. "
+            "Primary: meta-jev decide --data <path> --goal \"NL requirement\". "
+            "Aliases: run-job, from-data. Then: meta-jev run --sop … --trace. "
             "See README.md and examples/data/SOURCES.md."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     sub = p.add_subparsers(dest="command", required=True)
 
+    d = sub.add_parser(
+        "decide",
+        aliases=["run-job", "from-data"],
+        help="ONE entry: --data + --goal → LLM FeatureTable → tree/SOP/story",
+    )
+    d.add_argument(
+        "--data",
+        required=True,
+        help="CSV/JSON/JSONL/text file, or a directory of texts",
+    )
+    d.add_argument(
+        "--goal",
+        required=True,
+        help="Natural-language requirement (e.g. 按是否批准贷款做决策树)",
+    )
+    d.add_argument(
+        "--out",
+        help="Output directory (default: results/decide_<timestamp>/)",
+    )
+    d.add_argument("--criterion", default="gain", choices=["gain", "gain_ratio"])
+    d.add_argument("--max-depth", type=int, default=4)
+    d.add_argument("--min-samples", type=int, default=1)
+    d.add_argument("--seed", type=int, default=0)
+    d.add_argument(
+        "--trace-examples",
+        type=int,
+        default=0,
+        help="Run N example traces and write traces.json",
+    )
+    d.add_argument(
+        "--story",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Print bilingual story (default: on)",
+    )
+    d.set_defaults(func=cmd_decide)
+
     g = sub.add_parser(
         "grow",
-        help="Grow IG decision tree/SOP from CSV or built-in dataset (universal spine)",
+        help="(advanced) Grow from CSV / built-in dataset without LLM",
     )
     g.add_argument("--csv", help="Path to user CSV (main product path)")
     g.add_argument("--data", help="CSV path or 'cube' / 'cube_without_noise' / 'ticket_routing'")
@@ -741,7 +829,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     ib = sub.add_parser(
         "ingest-batch",
-        help="Batch texts+labels/scores → keyword FeatureTable → optional grow",
+        help="(advanced) Keyword FeatureTable from labeled text batch",
     )
     ib.add_argument("--csv", help="CSV/JSON-table with text + label/score columns")
     ib.add_argument("--jsonl", help="JSONL with text + label fields")
@@ -767,7 +855,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     it = sub.add_parser(
         "ingest-text",
-        help="Messy notes + goal → LLM FeatureTable → optional grow (needs API key)",
+        help="(advanced) Messy notes → LLM table (prefer decide)",
     )
     it.add_argument("--goal", required=True, help="One-line requirement / decision goal")
     it.add_argument("--input", help="Path to messy notes (default: stdin)")
@@ -795,7 +883,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     e = sub.add_parser(
         "eval-afa",
-        help="ONLY official path to AFA hard-budget metrics (config-driven)",
+        help="AFA hard-budget eval (config-driven)",
     )
     e.add_argument(
         "--config",

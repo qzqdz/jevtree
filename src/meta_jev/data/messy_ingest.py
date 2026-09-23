@@ -108,9 +108,7 @@ def ingest_messy_text(
             if not os.environ.get("META_JEV_LLM_API_KEY"):
                 raise RuntimeError(
                     "No META_JEV_LLM_API_KEY in .env. "
-                    "Messy-text ingest needs an LLM key, or use the CSV / "
-                    "text-batch path: meta-jev grow --csv ... / "
-                    "meta-jev ingest-batch --csv ..."
+                    "Use `meta-jev decide --data ... --goal ...` with META_JEV_LLM_* set."
                 )
             chat_fn = chat_completion
         except RuntimeError:
@@ -118,7 +116,7 @@ def ingest_messy_text(
         except Exception as exc:  # noqa: BLE001
             raise RuntimeError(
                 f"LLM helper unavailable ({exc}). "
-                "Fall back to: meta-jev grow --csv path/to.csv --label LABEL"
+                "Set META_JEV_LLM_* for `meta-jev decide`."
             ) from exc
 
     messages = build_messy_prompt(goal, notes)
@@ -126,8 +124,7 @@ def ingest_messy_text(
         resp = chat_fn(messages, temperature=temperature, max_tokens=max_tokens)
     except Exception as exc:  # noqa: BLE001
         raise RuntimeError(
-            f"LLM call failed: {exc}. "
-            "Do not fake rows — use CSV or text-batch ingest instead."
+            f"LLM call failed: {exc}."
         ) from exc
 
     choices = resp.get("choices") or []
@@ -139,7 +136,7 @@ def ingest_messy_text(
         table = validate_extracted_table(payload)
     except (json.JSONDecodeError, ValueError, KeyError, TypeError) as exc:
         raise RuntimeError(
-            f"LLM JSON invalid ({exc}). Fall back to CSV / text-batch path."
+            f"LLM JSON invalid ({exc}). Refusing to invent rows."
         ) from exc
 
     return IngestResult(
