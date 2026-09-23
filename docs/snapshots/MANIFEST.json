@@ -1,0 +1,307 @@
+{
+  "description": "Frozen copies of local results/ dumps cited by docs/RESULTS.md. Originals live under gitignored results/.",
+  "files": [
+    {
+      "source": "results/ablation_miniboone_disc_logistic_20260922T181304/comparison.json",
+      "snapshot": "docs/snapshots/ablation_miniboone_disc_logistic_20260922T181304__comparison.json",
+      "bytes": 5047,
+      "kind": "comparison",
+      "created_at": "2026-09-22T18:13:04Z",
+      "note": "Aggregated from existing summary.json only; no new scoring."
+    },
+    {
+      "source": "results/ablation_miniboone_logistic_20260922T180805/comparison.json",
+      "snapshot": "docs/snapshots/ablation_miniboone_logistic_20260922T180805__comparison.json",
+      "bytes": 5065,
+      "kind": "comparison",
+      "created_at": "2026-09-22T18:08:05Z",
+      "note": "Aggregated from existing summary.json only; no new scoring."
+    },
+    {
+      "source": "results/ablation_miniboone_20260922T085220/comparison.json",
+      "snapshot": "docs/snapshots/ablation_miniboone_20260922T085220__comparison.json",
+      "bytes": 3707,
+      "kind": "comparison",
+      "created_at": "2026-09-22T17:52:20Z",
+      "note": "Aggregated from existing summary.json only; no new scoring."
+    },
+    {
+      "source": "results/miniboone_ig_discriminative_20260922T181256Z/summary.json",
+      "snapshot": "docs/snapshots/miniboone_ig_discriminative_20260922T181256Z__summary.json",
+      "bytes": 2146,
+      "kind": "summary",
+      "dataset_id": "miniboone",
+      "policy_name": "ig_discriminative",
+      "predictor_name": "logistic_impute",
+      "split_seed": 0,
+      "git_commit": "c3aff57d749880335b2a49ea15c52ae334aa8566",
+      "curve": [
+        {
+          "budget": 5,
+          "accuracy": 0.824,
+          "f1": 0.7384128795985827,
+          "n_episodes": 500
+        },
+        {
+          "budget": 10,
+          "accuracy": 0.82,
+          "f1": 0.7342687074829932,
+          "n_episodes": 500
+        },
+        {
+          "budget": 20,
+          "accuracy": 0.814,
+          "f1": 0.7299008474723947,
+          "n_episodes": 500
+        },
+        {
+          "budget": 40,
+          "accuracy": 0.828,
+          "f1": 0.7526233431516937,
+          "n_episodes": 500
+        }
+      ]
+    },
+    {
+      "source": "results/miniboone_ig_static_20260922T180735Z/summary.json",
+      "snapshot": "docs/snapshots/miniboone_ig_static_20260922T180735Z__summary.json",
+      "bytes": 2144,
+      "kind": "summary",
+      "dataset_id": "miniboone",
+      "policy_name": "ig_static",
+      "predictor_name": "logistic_impute",
+      "split_seed": 0,
+      "git_commit": "c3aff57d749880335b2a49ea15c52ae334aa8566",
+      "curve": [
+        {
+          "budget": 5,
+          "accuracy": 0.814,
+          "f1": 0.6966316325132601,
+          "n_episodes": 500
+        },
+        {
+          "budget": 10,
+          "accuracy": 0.822,
+          "f1": 0.7326990190955016,
+          "n_episodes": 500
+        },
+        {
+          "budget": 20,
+          "accuracy": 0.822,
+          "f1": 0.7326990190955016,
+          "n_episodes": 500
+        },
+        {
+          "budget": 40,
+          "accuracy": 0.814,
+          "f1": 0.7349989456947302,
+          "n_episodes": 500
+        }
+      ]
+    },
+    {
+      "source": "results/miniboone_random_20260922T180736Z/summary.json",
+      "snapshot": "docs/snapshots/miniboone_random_20260922T180736Z__summary.json",
+      "bytes": 2136,
+      "kind": "summary",
+      "dataset_id": "miniboone",
+      "policy_name": "random",
+      "predictor_name": "logistic_impute",
+      "split_seed": 0,
+      "git_commit": "c3aff57d749880335b2a49ea15c52ae334aa8566",
+      "curve": [
+        {
+          "budget": 5,
+          "accuracy": 0.746,
+          "f1": 0.49920740699847793,
+          "n_episodes": 500
+        },
+        {
+          "budget": 10,
+          "accuracy": 0.766,
+          "f1": 0.5669200986089622,
+          "n_episodes": 500
+        },
+        {
+          "budget": 20,
+          "accuracy": 0.76,
+          "f1": 0.5707417582417582,
+          "n_episodes": 500
+        },
+        {
+          "budget": 40,
+          "accuracy": 0.8,
+          "f1": 0.6943092612066225,
+          "n_episodes": 500
+        }
+      ]
+    },
+    {
+      "source": "results/miniboone_sequential_20260922T180737Z/summary.json",
+      "snapshot": "docs/snapshots/miniboone_sequential_20260922T180737Z__summary.json",
+      "bytes": 2145,
+      "kind": "summary",
+      "dataset_id": "miniboone",
+      "policy_name": "sequential",
+      "predictor_name": "logistic_impute",
+      "split_seed": 0,
+      "git_commit": "c3aff57d749880335b2a49ea15c52ae334aa8566",
+      "curve": [
+        {
+          "budget": 5,
+          "accuracy": 0.724,
+          "f1": 0.419953596287703,
+          "n_episodes": 500
+        },
+        {
+          "budget": 10,
+          "accuracy": 0.728,
+          "f1": 0.4212962962962963,
+          "n_episodes": 500
+        },
+        {
+          "budget": 20,
+          "accuracy": 0.792,
+          "f1": 0.6593648464521539,
+          "n_episodes": 500
+        },
+        {
+          "budget": 40,
+          "accuracy": 0.822,
+          "f1": 0.7380981808123075,
+          "n_episodes": 500
+        }
+      ]
+    },
+    {
+      "source": "results/miniboone_ig_conditional_20260922T180756Z/summary.json",
+      "snapshot": "docs/snapshots/miniboone_ig_conditional_20260922T180756Z__summary.json",
+      "bytes": 2153,
+      "kind": "summary",
+      "dataset_id": "miniboone",
+      "policy_name": "ig_conditional",
+      "predictor_name": "logistic_impute",
+      "split_seed": 0,
+      "git_commit": "c3aff57d749880335b2a49ea15c52ae334aa8566",
+      "curve": [
+        {
+          "budget": 5,
+          "accuracy": 0.798,
+          "f1": 0.6470283984874643,
+          "n_episodes": 500
+        },
+        {
+          "budget": 10,
+          "accuracy": 0.796,
+          "f1": 0.6574330315161611,
+          "n_episodes": 500
+        },
+        {
+          "budget": 20,
+          "accuracy": 0.796,
+          "f1": 0.6712561881188119,
+          "n_episodes": 500
+        },
+        {
+          "budget": 40,
+          "accuracy": 0.832,
+          "f1": 0.751984126984127,
+          "n_episodes": 500
+        }
+      ]
+    },
+    {
+      "source": "results/cube_without_noise_ig_static_20260922T175144Z/summary.json",
+      "snapshot": "docs/snapshots/cube_without_noise_ig_static_20260922T175144Z__summary.json",
+      "bytes": 1008,
+      "kind": "summary",
+      "dataset_id": "cube_without_noise",
+      "policy_name": "ig_static",
+      "predictor_name": "policy.predict",
+      "split_seed": 0,
+      "git_commit": "c3aff57d749880335b2a49ea15c52ae334aa8566",
+      "curve": [
+        {
+          "budget": 1,
+          "accuracy": 0.6883116883116883,
+          "f1": 0.668103448275862,
+          "n_episodes": 77
+        },
+        {
+          "budget": 2,
+          "accuracy": 0.9090909090909091,
+          "f1": 0.8836606950140298,
+          "n_episodes": 77
+        },
+        {
+          "budget": 3,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "n_episodes": 77
+        }
+      ]
+    },
+    {
+      "source": "results/cube_without_noise_random_20260922T175144Z/summary.json",
+      "snapshot": "docs/snapshots/cube_without_noise_random_20260922T175144Z__summary.json",
+      "bytes": 1038,
+      "kind": "summary",
+      "dataset_id": "cube_without_noise",
+      "policy_name": "random",
+      "predictor_name": "policy.predict",
+      "split_seed": 0,
+      "git_commit": "c3aff57d749880335b2a49ea15c52ae334aa8566",
+      "curve": [
+        {
+          "budget": 1,
+          "accuracy": 0.7012987012987013,
+          "f1": 0.6177422836175265,
+          "n_episodes": 77
+        },
+        {
+          "budget": 2,
+          "accuracy": 0.7402597402597403,
+          "f1": 0.6622807017543859,
+          "n_episodes": 77
+        },
+        {
+          "budget": 3,
+          "accuracy": 0.7662337662337663,
+          "f1": 0.7275943396226415,
+          "n_episodes": 77
+        }
+      ]
+    },
+    {
+      "source": "results/cube_without_noise_sequential_20260922T175144Z/summary.json",
+      "snapshot": "docs/snapshots/cube_without_noise_sequential_20260922T175144Z__summary.json",
+      "bytes": 1015,
+      "kind": "summary",
+      "dataset_id": "cube_without_noise",
+      "policy_name": "sequential",
+      "predictor_name": "policy.predict",
+      "split_seed": 0,
+      "git_commit": "c3aff57d749880335b2a49ea15c52ae334aa8566",
+      "curve": [
+        {
+          "budget": 1,
+          "accuracy": 0.6883116883116883,
+          "f1": 0.668103448275862,
+          "n_episodes": 77
+        },
+        {
+          "budget": 2,
+          "accuracy": 0.9090909090909091,
+          "f1": 0.8836606950140298,
+          "n_episodes": 77
+        },
+        {
+          "budget": 3,
+          "accuracy": 1.0,
+          "f1": 1.0,
+          "n_episodes": 77
+        }
+      ]
+    }
+  ]
+}

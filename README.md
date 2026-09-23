@@ -90,6 +90,32 @@ jevtree eval-afa --config configs/eval_miniboone_hard.yaml
 
 ---
 
+
+---
+
+## 评测结果
+
+**不是 SOTA 声明。** 下列数字来自仓库内 hard-budget 评测（`jevtree eval-afa`），仅对比同协议下的内置基线（`random` / `sequential`）与 IG 策略变体；**未**与 GDFS / DIME / 官方 AFABench 榜单对打。示例 CSV（loan / iris / tennis 等）不是 benchmark。完整表格、协议与可引用快照见 [`docs/RESULTS.md`](docs/RESULTS.md)。
+
+### MiniBooNE · Acc @ budget（共享 `logistic_impute` 预测器）
+
+| Budget | Disc (`ig_discriminative`) | IG_static | Random | Sequential |
+|-------:|---------------------------:|----------:|-------:|-----------:|
+| 5 | **0.824** | 0.814 | 0.746 | 0.724 |
+| 10 | 0.820 | **0.822** | 0.766 | 0.728 |
+
+<sup>来源：[`docs/snapshots/ablation_miniboone_disc_logistic_20260922T181304__comparison.json`](docs/snapshots/ablation_miniboone_disc_logistic_20260922T181304__comparison.json)（2026-09-22T18:13:04Z；由既有 `summary.json` 聚合，未重新打分）。协议：`n_train=2000`，`n_test=500`，`split_seed=0`。</sup>
+
+### Cube without noise · Acc @ 3（协议 smoke）
+
+| Policy | Acc@3 |
+|--------|------:|
+| `ig_static` | 1.000 |
+| `sequential` | 1.000 |
+| `random` | 0.766 |
+
+<sup>来源：[`docs/snapshots/cube_without_noise_*_20260922T175144Z__summary.json`](docs/snapshots/)（同波次，`n_test=77`，`split_seed=0`）。</sup>
+
 ## 环境
 
 需要 **Python ≥ 3.11** 与 `.env` 中的 `JEVTREE_LLM_*`（兼容 OpenAI 风格 base URL / model / key；亦接受遗留 `META_JEV_LLM_*`）。

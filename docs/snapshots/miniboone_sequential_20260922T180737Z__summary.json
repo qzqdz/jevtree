@@ -1,0 +1,80 @@
+{
+  "dataset_id": "miniboone",
+  "dataset_hash": "c9de6ed766fcee87",
+  "split_seed": 0,
+  "budget_schedule": [
+    5,
+    10,
+    20,
+    40
+  ],
+  "git_commit": "c3aff57d749880335b2a49ea15c52ae334aa8566",
+  "config_path": "configs/eval_miniboone_sequential_logistic.json",
+  "policy_name": "sequential",
+  "curve": [
+    {
+      "budget": 5,
+      "accuracy": 0.724,
+      "f1": 0.419953596287703,
+      "n_episodes": 500
+    },
+    {
+      "budget": 10,
+      "accuracy": 0.728,
+      "f1": 0.4212962962962963,
+      "n_episodes": 500
+    },
+    {
+      "budget": 20,
+      "accuracy": 0.792,
+      "f1": 0.6593648464521539,
+      "n_episodes": 500
+    },
+    {
+      "budget": 40,
+      "accuracy": 0.822,
+      "f1": 0.7380981808123075,
+      "n_episodes": 500
+    }
+  ],
+  "predictor_name": "logistic_impute",
+  "has_builtin_classifier": true,
+  "note": "Self-eval uses policy.predict with predictor='logistic_impute' (has_builtin_classifier=True). GDFS / cross-method comparisons later need a shared external predictor.",
+  "data_provenance": {
+    "loader": "tabular",
+    "requested_dataset_id": "miniboone",
+    "fallback_used": false,
+    "subsample": {
+      "n_train": 2000,
+      "n_test": 500,
+      "mode": "fixed_counts"
+    },
+    "n_train": 2000,
+    "n_test": 500,
+    "n_features": 50,
+    "full_file_sha256": "577ab8bcb612199a0386cef1725058295df9a18b778a003a6a4349bbd51abd48",
+    "provenance": {
+      "dataset_id": "miniboone",
+      "label_key": "y",
+      "n_features_expected": 50,
+      "source": "uci",
+      "url": "https://archive.ics.uci.edu/ml/machine-learning-databases/00199/MiniBooNE_PID.txt",
+      "cache_path": "/home/qzqdz/Desktop/project/jev_project/Meta-Jev/data/cache/miniboone_uci_pid.txt",
+      "file_sha256": "577ab8bcb612199a0386cef1725058295df9a18b778a003a6a4349bbd51abd48",
+      "n_rows_full": 130064,
+      "tried": [
+        "miniboone"
+      ],
+      "subsample": {
+        "n_train": 2000,
+        "n_test": 500,
+        "mode": "fixed_counts"
+      },
+      "split_seed": 0,
+      "dataset_hash_split": "c9de6ed766fcee87"
+    }
+  },
+  "n_train": 2000,
+  "n_test": 500,
+  "n_features": 50
+}

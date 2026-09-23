@@ -1,0 +1,196 @@
+{
+  "created_at": "2026-09-22T18:13:04Z",
+  "note": "Aggregated from existing summary.json only; no new scoring.",
+  "runs": [
+    {
+      "label": "Disc",
+      "policy_name": "ig_discriminative",
+      "dataset_id": "miniboone",
+      "run_dir": "results/miniboone_ig_discriminative_20260922T181256Z",
+      "summary_path": "results/miniboone_ig_discriminative_20260922T181256Z/summary.json",
+      "curve": [
+        {
+          "budget": 5,
+          "accuracy": 0.824,
+          "f1": 0.7384128795985827,
+          "n_episodes": 500
+        },
+        {
+          "budget": 10,
+          "accuracy": 0.82,
+          "f1": 0.7342687074829932,
+          "n_episodes": 500
+        },
+        {
+          "budget": 20,
+          "accuracy": 0.814,
+          "f1": 0.7299008474723947,
+          "n_episodes": 500
+        },
+        {
+          "budget": 40,
+          "accuracy": 0.828,
+          "f1": 0.7526233431516937,
+          "n_episodes": 500
+        }
+      ],
+      "n_test": 500,
+      "n_train": 2000,
+      "predictor_name": "logistic_impute"
+    },
+    {
+      "label": "IG_static",
+      "policy_name": "ig_static",
+      "dataset_id": "miniboone",
+      "run_dir": "results/miniboone_ig_static_20260922T180735Z",
+      "summary_path": "results/miniboone_ig_static_20260922T180735Z/summary.json",
+      "curve": [
+        {
+          "budget": 5,
+          "accuracy": 0.814,
+          "f1": 0.6966316325132601,
+          "n_episodes": 500
+        },
+        {
+          "budget": 10,
+          "accuracy": 0.822,
+          "f1": 0.7326990190955016,
+          "n_episodes": 500
+        },
+        {
+          "budget": 20,
+          "accuracy": 0.822,
+          "f1": 0.7326990190955016,
+          "n_episodes": 500
+        },
+        {
+          "budget": 40,
+          "accuracy": 0.814,
+          "f1": 0.7349989456947302,
+          "n_episodes": 500
+        }
+      ],
+      "n_test": 500,
+      "n_train": 2000,
+      "predictor_name": "logistic_impute"
+    },
+    {
+      "label": "Random",
+      "policy_name": "random",
+      "dataset_id": "miniboone",
+      "run_dir": "results/miniboone_random_20260922T180736Z",
+      "summary_path": "results/miniboone_random_20260922T180736Z/summary.json",
+      "curve": [
+        {
+          "budget": 5,
+          "accuracy": 0.746,
+          "f1": 0.49920740699847793,
+          "n_episodes": 500
+        },
+        {
+          "budget": 10,
+          "accuracy": 0.766,
+          "f1": 0.5669200986089622,
+          "n_episodes": 500
+        },
+        {
+          "budget": 20,
+          "accuracy": 0.76,
+          "f1": 0.5707417582417582,
+          "n_episodes": 500
+        },
+        {
+          "budget": 40,
+          "accuracy": 0.8,
+          "f1": 0.6943092612066225,
+          "n_episodes": 500
+        }
+      ],
+      "n_test": 500,
+      "n_train": 2000,
+      "predictor_name": "logistic_impute"
+    },
+    {
+      "label": "Sequential",
+      "policy_name": "sequential",
+      "dataset_id": "miniboone",
+      "run_dir": "results/miniboone_sequential_20260922T180737Z",
+      "summary_path": "results/miniboone_sequential_20260922T180737Z/summary.json",
+      "curve": [
+        {
+          "budget": 5,
+          "accuracy": 0.724,
+          "f1": 0.419953596287703,
+          "n_episodes": 500
+        },
+        {
+          "budget": 10,
+          "accuracy": 0.728,
+          "f1": 0.4212962962962963,
+          "n_episodes": 500
+        },
+        {
+          "budget": 20,
+          "accuracy": 0.792,
+          "f1": 0.6593648464521539,
+          "n_episodes": 500
+        },
+        {
+          "budget": 40,
+          "accuracy": 0.822,
+          "f1": 0.7380981808123075,
+          "n_episodes": 500
+        }
+      ],
+      "n_test": 500,
+      "n_train": 2000,
+      "predictor_name": "logistic_impute"
+    }
+  ],
+  "table": [
+    {
+      "budget": 5,
+      "Disc_acc": 0.824,
+      "Disc_f1": 0.7384128795985827,
+      "IG_static_acc": 0.814,
+      "IG_static_f1": 0.6966316325132601,
+      "Random_acc": 0.746,
+      "Random_f1": 0.49920740699847793,
+      "Sequential_acc": 0.724,
+      "Sequential_f1": 0.419953596287703
+    },
+    {
+      "budget": 10,
+      "Disc_acc": 0.82,
+      "Disc_f1": 0.7342687074829932,
+      "IG_static_acc": 0.822,
+      "IG_static_f1": 0.7326990190955016,
+      "Random_acc": 0.766,
+      "Random_f1": 0.5669200986089622,
+      "Sequential_acc": 0.728,
+      "Sequential_f1": 0.4212962962962963
+    },
+    {
+      "budget": 20,
+      "Disc_acc": 0.814,
+      "Disc_f1": 0.7299008474723947,
+      "IG_static_acc": 0.822,
+      "IG_static_f1": 0.7326990190955016,
+      "Random_acc": 0.76,
+      "Random_f1": 0.5707417582417582,
+      "Sequential_acc": 0.792,
+      "Sequential_f1": 0.6593648464521539
+    },
+    {
+      "budget": 40,
+      "Disc_acc": 0.828,
+      "Disc_f1": 0.7526233431516937,
+      "IG_static_acc": 0.814,
+      "IG_static_f1": 0.7349989456947302,
+      "Random_acc": 0.8,
+      "Random_f1": 0.6943092612066225,
+      "Sequential_acc": 0.822,
+      "Sequential_f1": 0.7380981808123075
+    }
+  ]
+}

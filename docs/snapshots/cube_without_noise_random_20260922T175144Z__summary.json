@@ -1,0 +1,44 @@
+{
+  "dataset_id": "cube_without_noise",
+  "dataset_hash": "8ad1b47025d0004f",
+  "split_seed": 0,
+  "budget_schedule": [
+    1,
+    2,
+    3
+  ],
+  "git_commit": "c3aff57d749880335b2a49ea15c52ae334aa8566",
+  "config_path": "configs/eval_cube_random.json",
+  "policy_name": "random",
+  "curve": [
+    {
+      "budget": 1,
+      "accuracy": 0.7012987012987013,
+      "f1": 0.6177422836175265,
+      "n_episodes": 77
+    },
+    {
+      "budget": 2,
+      "accuracy": 0.7402597402597403,
+      "f1": 0.6622807017543859,
+      "n_episodes": 77
+    },
+    {
+      "budget": 3,
+      "accuracy": 0.7662337662337663,
+      "f1": 0.7275943396226415,
+      "n_episodes": 77
+    }
+  ],
+  "predictor_name": "policy.predict",
+  "has_builtin_classifier": true,
+  "note": "Self-eval uses policy.predict (has_builtin_classifier=True). GDFS / cross-method comparisons later need a shared external predictor.",
+  "data_provenance": {
+    "loader": "cube",
+    "n_samples": 256,
+    "n_features": 5
+  },
+  "n_train": 179,
+  "n_test": 77,
+  "n_features": 5
+}
