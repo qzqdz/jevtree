@@ -3,13 +3,13 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "meta-jev"
+name = "jevtree"
 version = "0.1.0"
-description = "Meta-Jev: grow decision SOPs / trees via information gain; evaluate under AFA hard-budget protocols"
+description = "jevtree: data + NL goal → FeatureTable → IG decision tree / SOP scaffolding; optional AFA hard-budget eval"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Proprietary" }
-authors = [{ name = "Meta-Jev contributors" }]
+authors = [{ name = "jevtree contributors" }]
 dependencies = [
   "numpy==2.5.3",
 ]
@@ -21,11 +21,11 @@ eval = [
 ]
 
 [project.scripts]
-meta-jev = "meta_jev.cli.main:main"
+jevtree = "jevtree.cli.main:main"
 
 [tool.setuptools.package-dir]
 "" = "src"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["meta_jev*"]
+include = ["jevtree*"]

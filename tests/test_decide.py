@@ -5,12 +5,12 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from meta_jev.cli.main import main
-from meta_jev.data.decide_pipeline import run_decide
-from meta_jev.data.feature_table import FeatureTable, IngestResult
-from meta_jev.data.messy_ingest import validate_extracted_table
-from meta_jev.data.universal_ingest import ingest_data_with_goal, read_data_blob
-from meta_jev.runtime.engine import RuntimeEngine
+from jevtree.cli.main import main
+from jevtree.data.decide_pipeline import run_decide
+from jevtree.data.feature_table import FeatureTable, IngestResult
+from jevtree.data.messy_ingest import validate_extracted_table
+from jevtree.data.universal_ingest import ingest_data_with_goal, read_data_blob
+from jevtree.runtime.engine import RuntimeEngine
 
 
 MOCK_PAYLOAD = {
@@ -106,7 +106,7 @@ def test_run_decide_mocked_writes_artifacts(tmp_path: Path) -> None:
 
 
 def test_cli_decide_with_mocked_llm(tmp_path: Path, monkeypatch) -> None:  # noqa: ANN001
-    import meta_jev.data.decide_pipeline as dp
+    import jevtree.data.decide_pipeline as dp
 
     csv_path = tmp_path / "loan.csv"
     csv_path.write_text(
@@ -142,7 +142,7 @@ def test_cli_decide_with_mocked_llm(tmp_path: Path, monkeypatch) -> None:  # noq
 
 
 def test_cli_from_data_alias(tmp_path: Path, monkeypatch) -> None:  # noqa: ANN001
-    import meta_jev.data.decide_pipeline as dp
+    import jevtree.data.decide_pipeline as dp
 
     csv_path = tmp_path / "x.csv"
     csv_path.write_text("a,y\n1,yes\n", encoding="utf-8")

@@ -1,5 +1,5 @@
 # Canonical smoke config is eval_cube_hard.json (stdlib). This YAML mirrors it.
-# Official: meta-jev eval-afa --config configs/eval_cube_hard.json
+# Official: jevtree eval-afa --config configs/eval_cube_hard.json
 
 dataset_id: cube_without_noise
 n_samples: 256

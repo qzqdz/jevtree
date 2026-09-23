@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Single Meta-Jev product demo: data + NL goal → FeatureTable → tree/SOP.
+"""Single jevtree product demo: data + NL goal → FeatureTable → tree/SOP.
 
-Uses a mocked LLM so it runs offline without META_JEV_LLM_API_KEY.
+Uses a mocked LLM so it runs offline without JEVTREE_LLM_API_KEY.
 For a real call, use the CLI instead:
 
-  meta-jev decide --data examples/data/bring_your_csv/loan_approve.csv \\
+  jevtree decide --data examples/data/bring_your_csv/loan_approve.csv \\
     --goal "按是否批准贷款做决策树" --out results/loan_decide
 
 Run from repo root:
@@ -22,8 +22,8 @@ _REPO = Path(__file__).resolve().parents[1]
 if str(_REPO / "src") not in sys.path:
     sys.path.insert(0, str(_REPO / "src"))
 
-from meta_jev.data.decide_pipeline import run_decide
-from meta_jev.runtime.engine import RuntimeEngine
+from jevtree.data.decide_pipeline import run_decide
+from jevtree.runtime.engine import RuntimeEngine
 
 MOCK_PAYLOAD = {
     "feature_keys": ["income_band", "credit_history", "debt_ratio"],
@@ -80,7 +80,7 @@ def main() -> int:
         print(f"sample trace decision={traced.get('decision')!r}")
     print(
         "\nReal LLM path:\n"
-        f'  meta-jev decide --data {data.relative_to(_REPO)} '
+        f'  jevtree decide --data {data.relative_to(_REPO)} '
         f'--goal "{goal}" --out results/loan_decide'
     )
     return 0

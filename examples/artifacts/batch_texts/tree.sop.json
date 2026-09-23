@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "meta-jev-tree",
+  "name": "jevtree-tree",
   "jev_model": "typesafe-ai/jev",
   "nodes": [],
   "output": "tree",

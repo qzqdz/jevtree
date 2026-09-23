@@ -1,3 +1,3 @@
-"""Compat shim: re-export from meta_jev.core.sop (do not edit logic here)."""
+"""Compat shim: re-export from jevtree.core.sop (do not edit logic here)."""
 
-from meta_jev.core.sop import *  # noqa: F403
+from jevtree.core.sop import *  # noqa: F403

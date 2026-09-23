@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from meta_jev.data.cube import load_cube_split
-from meta_jev.eval.protocol import HardBudgetEpisodeConfig, HardBudgetProtocol
-from meta_jev.policy.discriminative import DiscriminativeAcquisitionPolicy
+from jevtree.data.cube import load_cube_split
+from jevtree.eval.protocol import HardBudgetEpisodeConfig, HardBudgetProtocol
+from jevtree.policy.discriminative import DiscriminativeAcquisitionPolicy
 
 
 def test_discriminative_cube_acc_at_3() -> None:

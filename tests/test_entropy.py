@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from meta_jev.core.entropy import (
+from jevtree.core.entropy import (
     best_split,
     entropy,
     gain_ratio,

@@ -1,6 +1,6 @@
 # Pinned first *public-curve* eval config.
 # Official invocation ONLY:
-#   PYTHONPATH=src python3 -m meta_jev eval-afa --config configs/eval_miniboone_hard.json
+#   PYTHONPATH=src python3 -m jevtree eval-afa --config configs/eval_miniboone_hard.json
 #
 # dataset_path: UCI MiniBooNE_PID.txt cached under data/cache/ after first download.
 # If MiniBooNE download fails, allow_fallback=true loads diabetes (OpenML 37)

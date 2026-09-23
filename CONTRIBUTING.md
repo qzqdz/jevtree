@@ -1,4 +1,4 @@
-# Contributing to Meta-Jev
+# Contributing to jevtree
 
 Thanks for helping. Keep the product spine clear: **data + NL goal → FeatureTable → IG tree/SOP → auditable run**.
 
@@ -25,5 +25,5 @@ Never commit `.env`, API keys, or anything under `llm_model/` / `ref/`.
 ## Scope notes
 
 - Vertical stories (loan, support, homework, tickets) are **sample data for `decide`**, not separate products or CLI doors.
-- Do **not** quote Acc@budget / leaderboard numbers outside `meta-jev eval-afa`.
+- Do **not** quote Acc@budget / leaderboard numbers outside `jevtree eval-afa`.
 - Prefer tiny, license-safe demo data under `examples/data/` and document sources in `examples/data/SOURCES.md`.

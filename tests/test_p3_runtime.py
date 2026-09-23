@@ -3,11 +3,11 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from meta_jev.core.sop import DecisionSOP
-from meta_jev.core.tree import IGDecisionTreeGrower
-from meta_jev.data.cube import load_cube_split
-from meta_jev.runtime import RuntimeEngine
-from meta_jev.sdk import decide
+from jevtree.core.sop import DecisionSOP
+from jevtree.core.tree import IGDecisionTreeGrower
+from jevtree.data.cube import load_cube_split
+from jevtree.runtime import RuntimeEngine
+from jevtree.sdk import decide
 
 
 def test_tree_export_sop_roundtrip_and_sdk() -> None:

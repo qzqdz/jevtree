@@ -1,4 +1,4 @@
-"""Compat shim: re-export from meta_jev.core.entropy (do not edit logic here)."""
+"""Compat shim: re-export from jevtree.core.entropy (do not edit logic here)."""
 
-from meta_jev.core.entropy import *  # noqa: F403
-from meta_jev.core.entropy import __all__  # noqa: F401
+from jevtree.core.entropy import *  # noqa: F403
+from jevtree.core.entropy import __all__  # noqa: F401

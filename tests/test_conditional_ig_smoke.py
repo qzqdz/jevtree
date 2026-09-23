@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from meta_jev.data.cube import load_cube_split
-from meta_jev.eval.protocol import HardBudgetEpisodeConfig, HardBudgetProtocol
-from meta_jev.policy.conditional_ig import ConditionalIGAcquisitionPolicy
+from jevtree.data.cube import load_cube_split
+from jevtree.eval.protocol import HardBudgetEpisodeConfig, HardBudgetProtocol
+from jevtree.policy.conditional_ig import ConditionalIGAcquisitionPolicy
 
 
 def test_conditional_ig_cube_acc_at_3() -> None:

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from meta_jev.data.cube import load_cube_split
-from meta_jev.eval.protocol import HardBudgetEpisodeConfig, HardBudgetProtocol
-from meta_jev.policy.ig_acquisition import StaticIGAcquisitionPolicy
+from jevtree.data.cube import load_cube_split
+from jevtree.eval.protocol import HardBudgetEpisodeConfig, HardBudgetProtocol
+from jevtree.policy.ig_acquisition import StaticIGAcquisitionPolicy
 
 
 def test_ig_policy_hard_budget_smoke() -> None:

@@ -1,4 +1,4 @@
-"""Audit / reproducibility regressions for Meta-Jev eval-afa."""
+"""Audit / reproducibility regressions for jevtree eval-afa."""
 
 from __future__ import annotations
 
@@ -7,18 +7,18 @@ from pathlib import Path
 
 import pytest
 
-from meta_jev.data.cube import load_cube_split
-from meta_jev.data.tabular import (
+from jevtree.data.cube import load_cube_split
+from jevtree.data.tabular import (
     MINIBOONE_MISSING_SENTINEL,
     ensure_train_test_disjoint_features,
     load_tabular_split,
 )
-from meta_jev.eval.afabench import AFABenchAdapter
-from meta_jev.eval.metrics import summarize_curve
-from meta_jev.eval.provenance import collect_provenance, git_dirty
-from meta_jev.eval.protocol import HardBudgetEpisodeConfig, HardBudgetProtocol
-from meta_jev.policy.ig_acquisition import StaticIGAcquisitionPolicy
-from meta_jev.tools.compare_results import ComparisonError, build_comparison, validate_summaries_compatible
+from jevtree.eval.afabench import AFABenchAdapter
+from jevtree.eval.metrics import summarize_curve
+from jevtree.eval.provenance import collect_provenance, git_dirty
+from jevtree.eval.protocol import HardBudgetEpisodeConfig, HardBudgetProtocol
+from jevtree.policy.ig_acquisition import StaticIGAcquisitionPolicy
+from jevtree.tools.compare_results import ComparisonError, build_comparison, validate_summaries_compatible
 
 
 def test_compare_results_rejects_mismatched_predictor_hash_seed(tmp_path: Path) -> None:
@@ -207,7 +207,7 @@ def test_git_dirty_helper_returns_bool() -> None:
 
 def test_random_acquisition_same_seed_mask_same_act() -> None:
     """Same seed + mask → same act; order/budget history must not leak shared RNG."""
-    from meta_jev.policy.baselines import RandomAcquisitionPolicy
+    from jevtree.policy.baselines import RandomAcquisitionPolicy
 
     fkeys = [f"f{i}" for i in range(8)]
     # Tiny balanced table so fit succeeds; acquisition ignores labels for act.
@@ -265,7 +265,7 @@ def test_random_acquisition_same_seed_mask_same_act() -> None:
 
 def test_ig_ranking_stable_tie_break() -> None:
     """Construct exact IG ties; ranking order must be deterministic by feature name."""
-    from meta_jev.core.entropy import best_split, information_gain
+    from jevtree.core.entropy import best_split, information_gain
 
     # Two features with identical partitions of labels → identical IG.
     # f_a and f_b both split as L/L/R/R vs labels neg/neg/pos/pos → equal IG.
@@ -296,7 +296,7 @@ def test_ig_ranking_stable_tie_break() -> None:
     assert ranking2 == ranking
 
     # StaticIG policy ranking must match the same tie-break.
-    from meta_jev.policy.ig_acquisition import StaticIGAcquisitionPolicy
+    from jevtree.policy.ig_acquisition import StaticIGAcquisitionPolicy
 
     pol = StaticIGAcquisitionPolicy(
         force_acquisition=True,

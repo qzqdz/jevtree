@@ -5,9 +5,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from meta_jev.data.grow_pipeline import grow_from_table
-from meta_jev.data.messy_ingest import ingest_messy_text, validate_extracted_table
-from meta_jev.runtime.engine import RuntimeEngine
+from jevtree.data.grow_pipeline import grow_from_table
+from jevtree.data.messy_ingest import ingest_messy_text, validate_extracted_table
+from jevtree.runtime.engine import RuntimeEngine
 
 
 MOCK_PAYLOAD = {
@@ -62,25 +62,31 @@ def test_messy_ingest_mocked_then_grow(tmp_path: Path) -> None:
 
 
 def test_messy_ingest_no_key_clear_error(monkeypatch) -> None:  # noqa: ANN001
-    import meta_jev.data.messy_ingest as mi
+    import jevtree.data.messy_ingest as mi
     import os
 
-    monkeypatch.setattr(os.environ, "get", lambda *a, **k: "" if a and a[0] == "META_JEV_LLM_API_KEY" else os.environ.get(*a, **k))
+    def _env_get(*a, **k):
+        if a and a[0] in ("JEVTREE_LLM_API_KEY", "META_JEV_LLM_API_KEY"):
+            return ""
+        return os.environ.get(*a, **k)
+    monkeypatch.setattr(os.environ, "get", _env_get)
 
     def boom(*_a, **_k):
         raise RuntimeError(
-            "No META_JEV_LLM_API_KEY in .env. "
-            "Use `meta-jev decide --data ... --goal ...` with META_JEV_LLM_* set."
+            "No JEVTREE_LLM_API_KEY in .env. "
+            "Use `jevtree decide --data ... --goal ...` with JEVTREE_LLM_* set."
         )
 
     # Force the no-key path by injecting failure when chat_fn is None
     # and dotenv has no key — call with chat_fn that we don't pass, mock load
-    from meta_jev.llm import mimo
+    from jevtree.llm import mimo
 
     monkeypatch.setattr(mimo, "load_dotenv_env", lambda *a, **k: {})
-    monkeypatch.setenv("META_JEV_LLM_API_KEY", "")
+    monkeypatch.setenv("JEVTREE_LLM_API_KEY", "")
+    monkeypatch.delenv("JEVTREE_LLM_API_KEY", raising=False)
     monkeypatch.delenv("META_JEV_LLM_API_KEY", raising=False)
     # ensure empty
+    os.environ.pop("JEVTREE_LLM_API_KEY", None)
     os.environ.pop("META_JEV_LLM_API_KEY", None)
 
     try:

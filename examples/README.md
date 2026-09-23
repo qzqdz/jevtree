@@ -3,10 +3,10 @@
 **唯一产品入口 / only product entry:**
 
 ```bash
-meta-jev decide --data <path> --goal "自然语言需求" --out results/demo
+jevtree decide --data <path> --goal "自然语言需求" --out results/demo
 ```
 
-Aliases: `meta-jev run-job` / `meta-jev from-data`.
+Aliases: `jevtree run-job` / `jevtree from-data`.
 
 Offline mocked demo (no API key):
 

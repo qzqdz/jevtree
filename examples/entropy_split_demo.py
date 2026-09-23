@@ -2,13 +2,13 @@
 """Demo: information entropy / IG / gain_ratio on classic Play Tennis table.
 
 Asserts Outlook has the highest information gain (textbook result).
-Run from Meta-Jev root:
+Run from jevtree root:
   PYTHONPATH=src python3 examples/entropy_split_demo.py
 """
 
 from __future__ import annotations
 
-from meta_jev.core.entropy import (
+from jevtree.core.entropy import (
     best_split,
     entropy,
     gain_ratio,
