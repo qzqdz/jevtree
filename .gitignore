@@ -49,3 +49,6 @@ results/*
 !results/.gitignore
 # cached tabular downloads (also covered by data/)
 /data/cache/
+
+# Private local notes (prefer sibling ../jevtree-docs/; never commit)
+docs-private/
