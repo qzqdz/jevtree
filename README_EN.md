@@ -81,17 +81,6 @@ jevtree run --sop results/loan_decide/sop.json --input /tmp/obs.json --trace
 
 Data sources: [`examples/data/SOURCES.md`](examples/data/SOURCES.md).
 
----
-
-## Project docs
-
-Internal project docs live on Feishu and are **not committed to this repo** (open-source surface only).
-
-- **Wiki**: [jevtree](https://hcnzpmamw7fl.feishu.cn/wiki/PeOfwAaTOik9cDkCOlWcschanEf)
-- **Index**: [项目文档索引](https://hcnzpmamw7fl.feishu.cn/wiki/EmQ2wJRoqiQIcRk7nZsc5Eb7ntf)
-
----
-
 ## CLI
 
 ```bash

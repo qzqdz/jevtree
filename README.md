@@ -81,17 +81,6 @@ jevtree run --sop results/loan_decide/sop.json --input /tmp/obs.json --trace
 
 数据出处见 [`examples/data/SOURCES.md`](examples/data/SOURCES.md)。
 
----
-
-## 项目文档
-
-项目文档在飞书维护、**不进本仓库**（开源仓仅产品表面）。
-
-- **Wiki**: [jevtree](https://hcnzpmamw7fl.feishu.cn/wiki/PeOfwAaTOik9cDkCOlWcschanEf)
-- **索引**: [项目文档索引](https://hcnzpmamw7fl.feishu.cn/wiki/EmQ2wJRoqiQIcRk7nZsc5Eb7ntf)
-
----
-
 ## CLI
 
 ```bash
