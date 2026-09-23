@@ -119,4 +119,4 @@ pip install -r requirements.lock
 cp .env.example .env   # set JEVTREE_LLM_API_KEY — never commit secrets
 ```
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md). More scripts: [`examples/README_EN.md`](examples/README_EN.md).
+More scripts: [`examples/README_EN.md`](examples/README_EN.md).

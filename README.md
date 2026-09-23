@@ -119,4 +119,4 @@ pip install -r requirements.lock
 cp .env.example .env   # 填 JEVTREE_LLM_API_KEY — 切勿提交密钥
 ```
 
-贡献方式见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。更多脚本说明见 [`examples/README.md`](examples/README.md)。
+更多脚本说明见 [`examples/README.md`](examples/README.md)。
