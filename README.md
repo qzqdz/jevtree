@@ -28,35 +28,34 @@ flowchart LR
 
 ---
 
-## 五分钟上手
+## 五分钟上手（已验证 smoke）
+
+`jevtree decide` 需要 LLM：从 [`.env.example`](.env.example) 复制 `.env` 并填写 `JEVTREE_LLM_API_KEY`（切勿提交 `.env`）。演示 CSV 已提交在仓库内。
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
-# 可选: pip install -r requirements.lock
-cp .env.example .env   # 填 JEVTREE_LLM_API_KEY（切勿提交 .env）
+cp .env.example .env   # 填 JEVTREE_LLM_API_KEY
 
-# 唯一产品入口：数据 + 自然语言需求
+# 推荐：一键 smoke（非 0 退出即失败）
+./scripts/smoke_decide.sh
+
+# 或手动跑同一条主路径（loan CSV）
 jevtree decide \
   --data examples/data/bring_your_csv/loan_approve.csv \
   --goal "按是否批准贷款做决策树" \
-  --out results/loan_decide
+  --out results/smoke_loan
+```
 
-jevtree decide \
-  --data examples/data/batch_texts/support_emails.csv \
-  --goal "把邮件分成 spam/ham 或支持类别" \
-  --out results/email_decide
+`scripts/smoke_decide.sh` 会写入 `results/smoke_loan/`（已 gitignore），并可选对 `examples/artifacts/bring_your_csv/sample_obs.json` 跑一次 `jevtree run --trace`。
 
-jevtree decide \
-  --data examples/data/homework_scoring/short_answers.csv \
-  --goal "给短答打 1-5 分档并长出可审计评分 SOP" \
-  --out results/hw_decide \
-  --trace-examples 2
+对已有 SOP 跑一条观察：
 
-jevtree decide \
-  --data examples/data/messy_notes_sample.txt \
-  --goal "分流到哪个团队" \
-  --out results/messy_decide
+```bash
+jevtree run \
+  --sop results/smoke_loan/sop.json \
+  --input examples/artifacts/bring_your_csv/sample_obs.json \
+  --trace
 ```
 
 别名同样可用：`jevtree run-job` / `jevtree from-data`。
@@ -71,15 +70,7 @@ jevtree decide \
 | `story.md` | 中英双语叙事 |
 | `traces.json` | 可选示例 trace（`--trace-examples N`） |
 
-对已有 SOP 跑一条观察：
-
-```bash
-printf '{"income_band":"high","credit_history":"good","employment_years":"5plus","debt_ratio":"low","collateral":"yes"}' \
-  > /tmp/obs.json
-jevtree run --sop results/loan_decide/sop.json --input /tmp/obs.json --trace
-```
-
-数据出处见 [`examples/data/SOURCES.md`](examples/data/SOURCES.md)。
+更多演示数据（邮件 / 短答 / 杂乱文本）见 [`examples/data/`](examples/data/) 与 [`examples/data/SOURCES.md`](examples/data/SOURCES.md)。
 
 ## CLI
 
@@ -101,12 +92,12 @@ jevtree eval-afa --config configs/eval_miniboone_hard.yaml
 
 ## 环境
 
-需要 **Python ≥ 3.11** 与 `.env` 中的 `JEVTREE_LLM_*`（mimo 兼容 base URL / model / key）。
+需要 **Python ≥ 3.11** 与 `.env` 中的 `JEVTREE_LLM_*`（兼容 OpenAI 风格 base URL / model / key；亦接受遗留 `META_JEV_LLM_*`）。
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
-pip install -r requirements.lock
+# 可选: pip install -r requirements.lock
 cp .env.example .env   # 填 JEVTREE_LLM_API_KEY — 切勿提交密钥
 ```
 

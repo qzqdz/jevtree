@@ -147,7 +147,11 @@ def ingest_data_with_goal(
             import os
 
             load_dotenv_env()
-            if not os.environ.get("JEVTREE_LLM_API_KEY"):
+            # Prefer JEVTREE_LLM_*; accept legacy META_JEV_LLM_* (same as mimo._env_llm)
+            if not (
+                os.environ.get("JEVTREE_LLM_API_KEY")
+                or os.environ.get("META_JEV_LLM_API_KEY")
+            ):
                 raise RuntimeError(
                     "No JEVTREE_LLM_API_KEY in .env. "
                     "The unified entry `jevtree decide` needs an LLM key to "

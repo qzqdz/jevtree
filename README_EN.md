@@ -28,35 +28,34 @@ flowchart LR
 
 ---
 
-## Five-minute quickstart
+## Five-minute quickstart (verified smoke)
+
+`jevtree decide` needs an LLM: copy [`.env.example`](.env.example) to `.env` and set `JEVTREE_LLM_API_KEY` (never commit `.env`). Demo CSVs are already committed in-repo.
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
-# optional: pip install -r requirements.lock
-cp .env.example .env   # set JEVTREE_LLM_API_KEY (never commit .env)
+cp .env.example .env   # set JEVTREE_LLM_API_KEY
 
-# Single product entry: data + natural-language goal
+# Recommended: one-shot smoke (non-zero exit on failure)
+./scripts/smoke_decide.sh
+
+# Or run the same primary path by hand (loan CSV)
 jevtree decide \
   --data examples/data/bring_your_csv/loan_approve.csv \
   --goal "Grow a loan-approval decision tree" \
-  --out results/loan_decide
+  --out results/smoke_loan
+```
 
-jevtree decide \
-  --data examples/data/batch_texts/support_emails.csv \
-  --goal "Classify emails into spam/ham or support categories" \
-  --out results/email_decide
+`scripts/smoke_decide.sh` writes to `results/smoke_loan/` (gitignored) and optionally runs `jevtree run --trace` against `examples/artifacts/bring_your_csv/sample_obs.json`.
 
-jevtree decide \
-  --data examples/data/homework_scoring/short_answers.csv \
-  --goal "Score short answers 1-5 and grow an auditable grading SOP" \
-  --out results/hw_decide \
-  --trace-examples 2
+Run one observation against an existing SOP:
 
-jevtree decide \
-  --data examples/data/messy_notes_sample.txt \
-  --goal "Route to the right team" \
-  --out results/messy_decide
+```bash
+jevtree run \
+  --sop results/smoke_loan/sop.json \
+  --input examples/artifacts/bring_your_csv/sample_obs.json \
+  --trace
 ```
 
 Aliases also work: `jevtree run-job` / `jevtree from-data`.
@@ -71,15 +70,7 @@ The output directory (`--out`, or default `results/decide_<timestamp>/`) contain
 | `story.md` | Bilingual narrative |
 | `traces.json` | Optional example traces (`--trace-examples N`) |
 
-Run one observation against an existing SOP:
-
-```bash
-printf '{"income_band":"high","credit_history":"good","employment_years":"5plus","debt_ratio":"low","collateral":"yes"}' \
-  > /tmp/obs.json
-jevtree run --sop results/loan_decide/sop.json --input /tmp/obs.json --trace
-```
-
-Data sources: [`examples/data/SOURCES.md`](examples/data/SOURCES.md).
+More demo data (email / short answers / messy text): [`examples/data/`](examples/data/) and [`examples/data/SOURCES.md`](examples/data/SOURCES.md).
 
 ## CLI
 
@@ -101,12 +92,12 @@ jevtree eval-afa --config configs/eval_miniboone_hard.yaml
 
 ## Environment
 
-Requires **Python ≥ 3.11** and `JEVTREE_LLM_*` in `.env` (mimo-compatible base URL / model / key).
+Requires **Python ≥ 3.11** and `JEVTREE_LLM_*` in `.env` (OpenAI-compatible base URL / model / key; legacy `META_JEV_LLM_*` still accepted).
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
-pip install -r requirements.lock
+# optional: pip install -r requirements.lock
 cp .env.example .env   # set JEVTREE_LLM_API_KEY — never commit secrets
 ```
 
