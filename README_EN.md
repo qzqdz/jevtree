@@ -4,7 +4,7 @@ Language: [中文](README.md) | English
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 [![pytest](https://img.shields.io/badge/tests-pytest-green.svg)](#)
-[![License](https://img.shields.io/badge/license-Proprietary-lightgrey.svg)](./pyproject.toml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
 **One data path + one natural-language goal → an auditable decision tree / DecisionSOP.**
 

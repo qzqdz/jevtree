@@ -52,3 +52,6 @@ results/*
 
 # Private local notes (prefer sibling ../jevtree-docs/; never commit)
 docs-private/
+
+# Local Codex/OMC workflow state
+.omc/

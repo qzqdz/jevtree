@@ -4,7 +4,7 @@
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 [![pytest](https://img.shields.io/badge/tests-pytest-green.svg)](#)
-[![License](https://img.shields.io/badge/license-Proprietary-lightgrey.svg)](./pyproject.toml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
 **一份数据 + 一句自然语言需求 → 可审计的决策树 / DecisionSOP。**
 
