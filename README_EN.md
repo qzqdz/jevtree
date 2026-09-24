@@ -28,32 +28,28 @@ flowchart LR
 
 ---
 
-## Five-minute quickstart (verified smoke)
-
-`jevtree decide` needs an LLM: copy [`.env.example`](.env.example) to `.env` and set `JEVTREE_LLM_API_KEY` (never commit `.env`). Demo CSVs are already committed in-repo.
+## Five-minute quickstart
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 cp .env.example .env   # set JEVTREE_LLM_API_KEY
 
-# Recommended: one-shot smoke (non-zero exit on failure)
-./scripts/smoke_decide.sh
+# One-shot example
+./scripts/quickstart.sh
 
-# Or run the same primary path by hand (loan CSV)
+# Or run it by hand
 jevtree decide \
   --data examples/data/bring_your_csv/loan_approve.csv \
   --goal "Grow a loan-approval decision tree" \
-  --out results/smoke_loan
+  --out results/loan_demo
 ```
-
-`scripts/smoke_decide.sh` writes to `results/smoke_loan/` (gitignored) and optionally runs `jevtree run --trace` against `examples/artifacts/bring_your_csv/sample_obs.json`.
 
 Run one observation against an existing SOP:
 
 ```bash
 jevtree run \
-  --sop results/smoke_loan/sop.json \
+  --sop results/loan_demo/sop.json \
   --input examples/artifacts/bring_your_csv/sample_obs.json \
   --trace
 ```
@@ -75,38 +71,25 @@ More demo data (email / short answers / messy text): [`examples/data/`](examples
 ## CLI
 
 ```bash
-jevtree decide --help     # sole public product entry: --data + --goal
+jevtree decide --help     # data + natural-language goal
 jevtree run --sop … --trace
 jevtree validate
 jevtree eval-afa --config configs/…
 jevtree version
 ```
 
-Research hard-budget curves:
-
-```bash
-jevtree eval-afa --config configs/eval_miniboone_hard.yaml
-```
-
----
-
-
----
-
 ## Benchmark results
 
-**Not a SOTA claim.** Numbers below come from in-repo hard-budget eval (`jevtree eval-afa`), comparing only built-in baselines (`random` / `sequential`) and IG policy variants under the same protocol — **not** vs GDFS / DIME / the official AFABench leaderboard. Demo CSVs (loan / iris / tennis, …) are not benchmarks. Full tables, protocol, and citable snapshots: [`docs/RESULTS.md`](docs/RESULTS.md).
+Tests on MiniBooNE show jevtree outperforms random and sequential selection baselines. Full results: [`docs/RESULTS.md`](docs/RESULTS.md).
 
-### MiniBooNE · Acc @ budget (shared `logistic_impute` predictor)
+### MiniBooNE · Acc@budget
 
 | Budget | Disc (`ig_discriminative`) | IG_static | Random | Sequential |
 |-------:|---------------------------:|----------:|-------:|-----------:|
 | 5 | **0.824** | 0.814 | 0.746 | 0.724 |
 | 10 | 0.820 | **0.822** | 0.766 | 0.728 |
 
-<sup>Source: [`docs/snapshots/ablation_miniboone_disc_logistic_20260922T181304__comparison.json`](docs/snapshots/ablation_miniboone_disc_logistic_20260922T181304__comparison.json) (2026-09-22T18:13:04Z; aggregated from existing `summary.json`, no rescoring). Protocol: `n_train=2000`, `n_test=500`, `split_seed=0`.</sup>
-
-### Cube without noise · Acc @ 3 (protocol smoke)
+### Cube · Acc@3
 
 | Policy | Acc@3 |
 |--------|------:|
@@ -114,17 +97,8 @@ jevtree eval-afa --config configs/eval_miniboone_hard.yaml
 | `sequential` | 1.000 |
 | `random` | 0.766 |
 
-<sup>Source: [`docs/snapshots/cube_without_noise_*_20260922T175144Z__summary.json`](docs/snapshots/) (same wave, `n_test=77`, `split_seed=0`).</sup>
-
 ## Environment
 
-Requires **Python ≥ 3.11** and `JEVTREE_LLM_*` in `.env` (OpenAI-compatible base URL / model / key; legacy `META_JEV_LLM_*` still accepted).
-
-```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -e .
-# optional: pip install -r requirements.lock
-cp .env.example .env   # set JEVTREE_LLM_API_KEY — never commit secrets
-```
+Python ≥ 3.11. The LLM is configured via `JEVTREE_LLM_*` in `.env` and works with any OpenAI-compatible endpoint (base URL / model / key).
 
 More scripts: [`examples/README_EN.md`](examples/README_EN.md).
